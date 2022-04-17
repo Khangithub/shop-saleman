@@ -1,3 +1,5 @@
+<input type="text" class="form-control" (input)="onUpdateServerName($event)" />
+<p [innerText]="serverName"></p>
 <button
   class="btn btn-primary"
   [disabled]="!allowNewServer"
