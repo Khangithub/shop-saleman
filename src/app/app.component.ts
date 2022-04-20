@@ -11,7 +11,6 @@ type Element = {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-
 export class AppComponent {
   serverElements: Element[] = [
     { type: 'server', name: 'testServer', content: 'just a test' },
@@ -34,5 +33,13 @@ export class AppComponent {
       name: blueprintData.serverName,
       content: blueprintData.serverContent,
     });
+  }
+
+  onChangeFirst() {
+    this.serverElements[0].name = 'Changed!';
+  }
+
+  deleteFirstElement() {
+    this.serverElements.splice(0, 1);
   }
 }
