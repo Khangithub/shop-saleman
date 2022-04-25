@@ -4,6 +4,7 @@ import {
   EventEmitter,
   Output,
   ViewChild,
+  ElementRef,
 } from '@angular/core';
 
 @Component({
@@ -25,7 +26,7 @@ export class CockpitComponent implements OnInit {
   // newServerName: string = '';
   // newServerContent: string = '';
 
-  @ViewChild('serverContentInput') serverContentInput: any;
+  @ViewChild('serverContentInput') serverContentInput: ElementRef;
 
   constructor() {}
 
