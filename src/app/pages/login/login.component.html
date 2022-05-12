@@ -1,3 +1,49 @@
-<input type="text" [(ngModel)]="email">
-<input type="password" [(ngModel)]="pwd">
-<button (click)="login()">Login</button>
+<div class="login">
+  <div class="login-ct">
+    <h1>Login to sale the world</h1>
+
+    <form class="login-form">
+      <input
+        type="text"
+        name="email"
+        placeholder="Email"
+        autoComplete="email"
+        [(ngModel)]="email"
+      />
+      <input
+        [type]="visiblePwd ? 'text': 'password'"
+        name="password"
+        placeholder="Password"
+        [(ngModel)]="pwd"
+      />
+
+      <img
+        class="visible-pwd-btn"
+        [src]="visiblePwd ? '../../../assets/svgs/eye.svg' : '../../../assets/svgs/eye-crossed.svg'"
+        alt=""
+        (click)="togglePwd()"
+      />
+
+      <button type="submit" class="login-btn" (click)="login()">Login</button>
+    </form>
+
+    <div class="gg-login-ct">
+      <h4>
+        <b>Or</b>
+      </h4>
+      <button>
+        <img src="../../../assets/svgs/google.svg" alt="google" />
+        Continue with Google
+      </button>
+    </div>
+
+    <div class="login-term-container">
+      <div class="term">
+        <span>By continuing with Shopeeholic, you agreed with </span>
+        <span>Terms of Service, Privacy Policy</span>
+      </div>
+
+      <p>Not on Shopeeholic yet? Sign up</p>
+    </div>
+  </div>
+</div>
