@@ -7,8 +7,8 @@ import { ConfigService } from "../../config/config.service";
   styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent implements OnInit {
-  email: string;
-  pwd: string;
+  email: string = '';
+  pwd: string = '';
   visiblePwd: boolean = false;
 
   constructor(private api: ConfigService) {}

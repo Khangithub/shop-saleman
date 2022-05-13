@@ -9,6 +9,7 @@ export class ConfigService {
   constructor(private http: HttpClient) {}
 
   loginWithPwd(email: string, pwd: string) {
+    console.log(email, pwd, 'config')
     return this.http.post<any>(environment.LOGIN_PWD, {
       email,
       password: pwd,

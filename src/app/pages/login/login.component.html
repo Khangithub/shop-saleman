@@ -2,30 +2,36 @@
   <div class="login-ct">
     <h1>Login to sale the world</h1>
 
-    <form class="login-form">
+    <div class="login-form">
       <input
         type="text"
         name="email"
         placeholder="Email"
         autoComplete="email"
-        [(ngModel)]="email"
+        [value]="email"
+        (change)="email = $event.target.value"
       />
       <input
-        [type]="visiblePwd ? 'text': 'password'"
+        [type]="visiblePwd ? 'text' : 'password'"
         name="password"
         placeholder="Password"
-        [(ngModel)]="pwd"
+        [value]="pwd"
+        (change)="pwd = $event.target.value"
       />
 
       <img
         class="visible-pwd-btn"
-        [src]="visiblePwd ? '../../../assets/svgs/eye.svg' : '../../../assets/svgs/eye-crossed.svg'"
+        [src]="
+          visiblePwd
+            ? '../../../assets/svgs/eye.svg'
+            : '../../../assets/svgs/eye-crossed.svg'
+        "
         alt=""
         (click)="togglePwd()"
       />
 
       <button type="submit" class="login-btn" (click)="login()">Login</button>
-    </form>
+    </div>
 
     <div class="gg-login-ct">
       <h4>
