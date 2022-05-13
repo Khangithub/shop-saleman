@@ -30,7 +30,7 @@
         (click)="togglePwd()"
       />
 
-      <button type="submit" class="login-btn" (click)="login()">Login</button>
+      <button type="submit" [disabled]="isLogin" class="login-btn" (click)="login()">Login</button>
     </div>
 
     <div class="gg-login-ct">
