@@ -1,0 +1,26 @@
+<table>
+  <tr>
+    <th>Index</th>
+    <th>Product Name</th>
+    <th>Product Media</th>
+    <th>In Stock</th>
+    <th>Sold</th>
+    <th>Actions</th>
+  </tr>
+  <tr *ngFor="let prod of prods; index as i; first as isFirst">
+    <td>{{ i + 1 }}</td>
+    <td>{{ prod.name }}</td>
+    <td>
+      <img [src]="prod.productImage[0]" alt="prod-img" class="prod-img" />
+      <img [src]="prod.productImage[0]" alt="prod-img" class="prod-img indent" />
+      <img [src]="prod.productImage[0]" alt="prod-img" class="prod-img indent" />
+      <img [src]="prod.productImage[0]" alt="prod-img" class="prod-img indent" />
+    </td>
+    <td>{{prod.inStock}}</td>
+    <td>0</td>
+    <td>
+        <img src="../../../assets/svgs/edit.svg" alt="edit" class="prod-action"/>
+        <img src="../../../assets/svgs/delete.svg" alt="delete" class="prod-action"/>
+    </td>
+  </tr>
+</table>

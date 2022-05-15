@@ -15,24 +15,37 @@ export class ConfigService {
     private route: Router
   ) {}
 
-  getCurrentUser() {
-    let currentUserCookie = this.cookieService.get("token"); // To Get Cookie
+  async getCurrentUser() {
+    try {
+      let currentUserCookie = this.cookieService.get("token"); // To Get Cookie
 
-    if (!currentUserCookie) {
-      return this.route.navigate(["/login"]);
-    }
-
-    const headers = { Authorization: "Bearer " + currentUserCookie };
-
-    return this.http.get(environment.GET_CURRENT_USER, { headers }).subscribe(
-      (data) => {
-        return data;
-      },
-      (err) => {
-        console.log("oops", err);
+      if (!currentUserCookie) {
         return this.route.navigate(["/login"]);
       }
-    );
+
+      const headers = { Authorization: "Bearer " + currentUserCookie };
+
+      const user: any = await this.http
+        .get(environment.GET_CURRENT_USER, { headers })
+        .toPromise();
+
+      return user.currentUser;
+    } catch (err) {
+      console.log("err", err);
+      this.route.navigate(["/login"]);
+    }
+  }
+
+  async getProds(userId, pageIndex, limit) {
+    try {
+      const prodsReq: any = await this.http
+        .get(environment.GET_PRODUCTS + userId + "/" + pageIndex + "/" + limit)
+        .toPromise();
+
+      return prodsReq.docs;
+    } catch (err) {
+      console.log("err", err);
+    }
   }
 
   loginWithPwd(email: string, pwd: string): Observable<any> {
