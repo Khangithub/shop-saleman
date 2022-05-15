@@ -31,18 +31,29 @@ export class ConfigService {
 
       return user.currentUser;
     } catch (err) {
-      console.log("err", err);
       this.route.navigate(["/login"]);
     }
   }
 
-  async getProds(userId, pageIndex, limit) {
+  async getProdsBySaleman(userId, pageIndex, limit) {
     try {
       const prodsReq: any = await this.http
         .get(environment.GET_PRODUCTS + userId + "/" + pageIndex + "/" + limit)
         .toPromise();
 
       return prodsReq.docs;
+    } catch (err) {
+      console.log("err", err);
+    }
+  }
+
+  async getProd(prodId) {
+    try {
+      const prodReq = await this.http
+        .get(environment.GET_PRODUCT + prodId)
+        .toPromise();
+
+      return prodReq;
     } catch (err) {
       console.log("err", err);
     }

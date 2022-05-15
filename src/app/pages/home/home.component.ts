@@ -14,6 +14,6 @@ export class HomeComponent implements OnInit {
 
   async ngOnInit() {
     this.currentUser = await this.api.getCurrentUser();
-    this.prods = await this.api.getProds(this.currentUser._id, 1, 6);
+    this.prods = await this.api.getProdsBySaleman(this.currentUser._id, 1, 6);
   }
 }

@@ -5,8 +5,8 @@
       <input
         class="form-control"
         type="text"
-        [value]="name"
-        (change)="name = $event.target.value"
+        [value]="currentProd.name"
+        (change)="currentProd.name = $event.target.value"
       />
     </form>
 
@@ -16,8 +16,8 @@
         type="number"
         class="form-control"
         min="0"
-        [value]="price"
-        (change)="price = $event.target.value"
+        [value]="currentProd.price"
+        (change)="currentProd.price = $event.target.value"
       />
     </form>
     <form>
@@ -27,12 +27,13 @@
         class="form-control"
         min="0"
         max="100"
-        [value]="discount"
-        (change)="discount = $event.target.value"
+        [value]="currentProd.discount"
+        (change)="currentProd.discount = $event.target.value"
       />
     </form>
+
     <form>
-      <label>Image url: </label>
+      <label for="product-media">Media: </label>
       <input
         type="file"
         (change)="onFileChange($event)"
@@ -42,14 +43,30 @@
       />
       <button (click)="onSubmit($event)">Upload Media</button>
     </form>
+
+    <img
+      [src]="currentProd.productImage[0]"
+      alt="prod-media"
+      style="height: 40px; width: 40px;"
+    />
+    <img
+      [src]="currentProd.productImage[0]"
+      alt="prod-media"
+      style="height: 40px; width: 40px;"
+    />
+    <img
+      [src]="currentProd.productImage[0]"
+      alt="prod-media"
+      style="height: 40px; width: 40px;"
+    />
   </div>
   <div class="prod-modal-layout">
     <form>
       <label>Category: </label>
       <select
         class="form-control"
-        [value]="category"
-        (change)="category = $event.target.value"
+        [value]="currentProd.category"
+        (change)="currentProd.category = $event.target.value"
       >
         <option value="book">book</option>
         <option value="technology">technology</option>
@@ -61,8 +78,8 @@
       <input
         class="form-control"
         type="text"
-        [value]="manufacturer"
-        (change)="manufacturer = $event.target.value"
+        [value]="currentProd.manufacturer"
+        (change)="currentProd.manufacturer = $event.target.value"
       />
     </form>
     <form>
@@ -70,8 +87,8 @@
       <textarea
         class="form-control"
         rows="5"
-        [value]="description"
-        (change)="description = $event.target.value"
+        [value]="currentProd.description"
+        (change)="currentProd.description = $event.target.value"
       ></textarea>
     </form>
   </div>

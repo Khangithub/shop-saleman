@@ -12,15 +12,36 @@
     <td>{{ prod.name }}</td>
     <td>
       <img [src]="prod.productImage[0]" alt="prod-img" class="prod-img" />
-      <img [src]="prod.productImage[0]" alt="prod-img" class="prod-img indent" />
-      <img [src]="prod.productImage[0]" alt="prod-img" class="prod-img indent" />
-      <img [src]="prod.productImage[0]" alt="prod-img" class="prod-img indent" />
+      <img
+        [src]="prod.productImage[0]"
+        alt="prod-img"
+        class="prod-img indent"
+      />
+      <img
+        [src]="prod.productImage[0]"
+        alt="prod-img"
+        class="prod-img indent"
+      />
+      <img
+        [src]="prod.productImage[0]"
+        alt="prod-img"
+        class="prod-img indent"
+      />
     </td>
-    <td>{{prod.inStock}}</td>
+    <td>{{ prod.inStock }}</td>
     <td>0</td>
     <td>
-        <img src="../../../assets/svgs/edit.svg" alt="edit" class="prod-action"/>
-        <img src="../../../assets/svgs/delete.svg" alt="delete" class="prod-action"/>
+      <img
+        src="../../../assets/svgs/edit.svg"
+        alt="edit"
+        class="prod-action"
+        (click)="onEditProd(prod._id)"
+      />
+      <img
+        src="../../../assets/svgs/delete.svg"
+        alt="delete"
+        class="prod-action"
+      />
     </td>
   </tr>
 </table>

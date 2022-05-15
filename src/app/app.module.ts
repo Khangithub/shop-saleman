@@ -1,4 +1,3 @@
-import { ProductManagementComponent } from "./components/product-management/product-management.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
@@ -9,6 +8,8 @@ import { AppRoutingModule } from "./app-routing.module";
 import { HomeComponent } from "./pages/home/home.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { ProdListComponent } from './components/prod-list/prod-list.component';
+import { EditProdComponent } from './pages/edit-prod/edit-prod.component';
+import { NotfoundComponent } from './pages/notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -16,8 +17,9 @@ import { ProdListComponent } from './components/prod-list/prod-list.component';
     HomeComponent,
     NavbarComponent,
     LoginComponent,
-    ProductManagementComponent,
     ProdListComponent,
+    EditProdComponent,
+    NotfoundComponent,
   ],
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   providers: [],
