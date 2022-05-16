@@ -15,4 +15,29 @@ export class EditProdComponent implements OnInit {
     let prodId = this.route.snapshot.paramMap.get("prodId");
     this.currentProd = await this.api.getProd(prodId);
   }
+
+  allowDrag(e: any): void {
+    e.preventDefault();
+  }
+
+  dragMedia(e: any): void {
+    e.dataTransfer.setData("text", e.target.id);
+  }
+
+  dropMedia(e: any): void {
+    e.preventDefault();
+    var data = e.dataTransfer.getData("text");
+    this.swap(document.getElementById(data), e.target);
+  }
+
+  swap(nodeA: HTMLElement, nodeB: HTMLElement) {
+    const parentA = nodeA.parentNode;
+    const siblingA = nodeA.nextSibling === nodeB ? nodeA : nodeA.nextSibling;
+
+    // Move `nodeA` to before the `nodeB`
+    nodeB.parentNode.insertBefore(nodeA, nodeB);
+
+    // Move `nodeB` to before the sibling of `nodeA`
+    parentA.insertBefore(nodeB, siblingA);
+  }
 }
