@@ -40,58 +40,90 @@
         name="product-media"
         id="product-media"
         multiple
+        accept="video/*,image/*"
       />
       <button (click)="onSubmit($event)">Upload Media</button>
+      <!-- <div class="prod-media-list">
+        <img
+          [src]="currentProd.productImage[0]"
+          alt="prod-media"
+          style="height: 40px; width: 40px"
+          draggable="true"
+          (drop)="dropMedia($event)"
+          (dragover)="allowDrag($event)"
+          (dragstart)="dragMedia($event)"
+          id="media-1"
+        />
+        <img
+          src="https://cdn.sstatic.net/Img/teams/teams-illo-free-sidebar-promo.svg?v=47faa659a05e"
+          alt="prod-media"
+          style="height: 40px; width: 40px"
+          draggable="true"
+          (drop)="dropMedia($event)"
+          (dragover)="allowDrag($event)"
+          (dragstart)="dragMedia($event)"
+          id="media-2"
+        />
+        <img
+          src="https://gamek.mediacdn.vn/133514250583805952/2021/1/15/1-16106966278281009206635.jpg"
+          alt="prod-media"
+          style="height: 40px; width: 40px"
+          draggable="true"
+          (drop)="dropMedia($event)"
+          (dragover)="allowDrag($event)"
+          (dragstart)="dragMedia($event)"
+          id="media-3"
+        />
+        <video
+          width="40"
+          height="40"
+          controls
+          draggable="true"
+          (drop)="dropMedia($event)"
+          (dragover)="allowDrag($event)"
+          (dragstart)="dragMedia($event)"
+          id="media-4"
+        >
+          <source
+            src="https://static.videezy.com/system/resources/previews/000/044/479/original/banana.mp4"
+            type="video/mp4"
+          />
+        </video>
+      </div> -->
+      <div *ngFor="let media of currentProd.mediaList; index as i">
+        <ng-template [ngIf]="media.mimetype.includes('image')">
+          <img
+            [src]="media.filename"
+            alt="prod-media"
+            style="height: 40px; width: 40px"
+            draggable="true"
+            (drop)="dropMedia($event)"
+            (dragover)="allowDrag($event)"
+            (dragstart)="dragMedia($event)"
+            [id]="media._id"
+          />
+        </ng-template>
+        <ng-template [ngIf]="media.mimetype.includes('video')">
+          <video
+            width="40"
+            height="40"
+            controls
+            draggable="true"
+            (drop)="dropMedia($event)"
+            (dragover)="allowDrag($event)"
+            (dragstart)="dragMedia($event)"
+            [id]="media._id"
+          >
+            <source
+              [src]="media.filename"
+              type="video/mp4"
+            />
+          </video>
+        </ng-template>
+      </div>
     </form>
   </div>
 
-  <div class="prod-media-list">
-    <img
-      [src]="currentProd.productImage[0]"
-      alt="prod-media"
-      style="height: 40px; width: 40px"
-      draggable="true"
-      (drop)="dropMedia($event)"
-      (dragover)="allowDrag($event)"
-      (dragstart)="dragMedia($event)"
-      id="media-1"
-    />
-    <img
-      src="https://cdn.sstatic.net/Img/teams/teams-illo-free-sidebar-promo.svg?v=47faa659a05e"
-      alt="prod-media"
-      style="height: 40px; width: 40px"
-      draggable="true"
-      (drop)="dropMedia($event)"
-      (dragover)="allowDrag($event)"
-      (dragstart)="dragMedia($event)"
-      id="media-2"
-    />
-    <img
-      src="https://gamek.mediacdn.vn/133514250583805952/2021/1/15/1-16106966278281009206635.jpg"
-      alt="prod-media"
-      style="height: 40px; width: 40px"
-      draggable="true"
-      (drop)="dropMedia($event)"
-      (dragover)="allowDrag($event)"
-      (dragstart)="dragMedia($event)"
-      id="media-3"
-    />
-    <video
-      width="40"
-      height="40"
-      controls
-      draggable="true"
-      (drop)="dropMedia($event)"
-      (dragover)="allowDrag($event)"
-      (dragstart)="dragMedia($event)"
-      id="media-4"
-    >
-      <source
-        src="https://static.videezy.com/system/resources/previews/000/044/479/original/banana.mp4"
-        type="video/mp4"
-      />
-    </video>
-  </div>
   <div class="prod-modal-layout">
     <form>
       <label>Category: </label>

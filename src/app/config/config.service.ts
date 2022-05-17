@@ -65,4 +65,23 @@ export class ConfigService {
       password: pwd,
     });
   }
+
+  async uploadProdMedia(files, prodId: string) {
+    const fd = new FormData();
+    for (let i = 0; i < files.length; i++) {
+      fd.append("shop-prod", files[i]);
+    }
+
+    let currentUserCookie = this.cookieService.get("token"); // To Get Cookie
+
+    if (!currentUserCookie) {
+      return this.route.navigate(["/login"]);
+    }
+
+    const headers = { Authorization: "Bearer " + currentUserCookie };
+
+    return this.http
+      .patch(environment.UPLOAD_PRODUCT_MEDIA + prodId, fd, { headers })
+      .toPromise();
+  }
 }

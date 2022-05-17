@@ -9,6 +9,7 @@ import { ConfigService } from "src/app/config/config.service";
 })
 export class EditProdComponent implements OnInit {
   currentProd;
+  selectedFiles = [];
   constructor(private route: ActivatedRoute, private api: ConfigService) {}
 
   async ngOnInit() {
@@ -39,5 +40,22 @@ export class EditProdComponent implements OnInit {
 
     // Move `nodeB` to before the sibling of `nodeA`
     parentA.insertBefore(nodeB, siblingA);
+  }
+
+  onFileChange(ev) {
+    this.selectedFiles = ev.target.files;
+  }
+
+  async onSubmit() {
+    const res: any = await this.api.uploadProdMedia(
+      this.selectedFiles,
+      this.currentProd._id
+    );
+    if (res.updated) {
+      this.currentProd.mediaList = [
+        ...this.currentProd.mediaList,
+        ...res.mediaList,
+      ];
+    }
   }
 }
