@@ -1,33 +1,46 @@
-<div class="prod-modal-ct">
-  <div class="prod-modal-layout">
-    <label>Name: </label>
-    <input
-      class="form-control"
-      type="text"
-      [value]="currentProd.name"
-      (change)="currentProd.name = $event.target.value"
-    />
+<div class="edit-prod">
+  <app-navbar></app-navbar>
+  <main>
+    <div class="prod-modal-ct">
+      <div class="prod-modal-layout">
+        <label>Name: </label>
+        <input
+          class="form-control"
+          type="text"
+          [value]="currentProd?.name"
+          (change)="currentProd.name = $event.target.value"
+        />
 
-    <label>Price: </label>
-    <input
-      type="number"
-      class="form-control"
-      min="0"
-      [value]="currentProd.price"
-      (change)="currentProd.price = $event.target.value"
-    />
+        <label>Price: </label>
+        <input
+          type="number"
+          class="form-control"
+          min="0"
+          [value]="currentProd?.price"
+          (change)="currentProd.price = $event.target.value"
+        />
 
-    <label>Discount (%): </label>
-    <input
-      type="number"
-      class="form-control"
-      min="0"
-      max="100"
-      [value]="currentProd.discount"
-      (change)="currentProd.discount = $event.target.value"
-    />
+        <label>Discount (%): </label>
+        <input
+          type="number"
+          class="form-control"
+          min="0"
+          max="100"
+          [value]="currentProd?.discount"
+          (change)="currentProd.discount = $event.target.value"
+        />
 
-    <!-- <div>
+        <label
+          >Variants:
+          <button (click)="openVairantModal = !openVairantModal">
+            {{ openVairantModal ? "X" : "+" }}
+          </button></label
+        >
+        <app-variant-model
+          *ngIf="openVairantModal"
+          [openVairantModal]="openVairantModal"
+        ></app-variant-model>
+        <!-- <div>
       <label for="product-media">Variants: </label>
       <input
         type="file"
@@ -67,34 +80,36 @@
         </ng-template>
       </div>
     </div> -->
-  </div>
+      </div>
 
-  <div class="prod-modal-layout">
-    <label>Category: </label>
-    <select
-      class="form-control"
-      [value]="currentProd.category"
-      (change)="currentProd.category = $event.target.value"
-    >
-      <option value="book">book</option>
-      <option value="technology">technology</option>
-      <option value="food">food</option>
-    </select>
+      <div class="prod-modal-layout">
+        <label>Category: </label>
+        <select
+          class="form-control"
+          [value]="currentProd?.category"
+          (change)="currentProd.category = $event.target.value"
+        >
+          <option value="book">book</option>
+          <option value="technology">technology</option>
+          <option value="food">food</option>
+        </select>
 
-    <label>Manufacturer: </label>
-    <input
-      class="form-control"
-      type="text"
-      [value]="currentProd.manufacturer"
-      (change)="currentProd.manufacturer = $event.target.value"
-    />
+        <label>Manufacturer: </label>
+        <input
+          class="form-control"
+          type="text"
+          [value]="currentProd?.manufacturer"
+          (change)="currentProd.manufacturer = $event.target.value"
+        />
 
-    <label>Description: </label>
-    <textarea
-      class="form-control"
-      rows="5"
-      [value]="currentProd.description"
-      (change)="currentProd.description = $event.target.value"
-    ></textarea>
-  </div>
+        <label>Description: </label>
+        <textarea
+          class="form-control"
+          rows="5"
+          [value]="currentProd?.description"
+          (change)="currentProd.description = $event.target.value"
+        ></textarea>
+      </div>
+    </div>
+  </main>
 </div>

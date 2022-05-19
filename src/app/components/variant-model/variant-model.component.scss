@@ -1,3 +1,11 @@
-.variant-model-header, .variant-model-body {
-    display: flex;
+.variant-model {
+  background: lightgray;
+  padding: 10px;
+
+  border: 1px solid lightgray;
+  border-radius: 10px;
+
+  &>button {
+    margin-left: auto;
+  }
 }

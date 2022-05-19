@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { ConfigService } from "src/app/config/config.service";
 
@@ -10,6 +10,8 @@ import { ConfigService } from "src/app/config/config.service";
 export class EditProdComponent implements OnInit {
   currentProd;
   selectedFiles = [];
+  public openVairantModal: boolean = false;
+
   constructor(private route: ActivatedRoute, private api: ConfigService) {}
 
   async ngOnInit() {

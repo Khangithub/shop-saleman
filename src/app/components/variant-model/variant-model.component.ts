@@ -1,5 +1,4 @@
-import { Component, OnInit } from "@angular/core";
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, Input, OnInit } from "@angular/core";
 
 @Component({
   selector: "app-variant-model",
@@ -11,17 +10,11 @@ export class VariantModelComponent implements OnInit {
   propName: string = "";
   propPrice: number = 0;
   propMedia: File;
+  @Input() public openVairantModal: boolean;
 
-  constructor(private modalService: NgbModal) {}
+  constructor() {
+    console.log("out", this.openVairantModal);
+  }
 
   ngOnInit(): void {}
-
-  onAddMedia($event) {
-
-  }
-
-  openVerticallyCentered(content) {
-    console.log('content', content);
-    this.modalService.open(content, { centered: true });
-  }
 }

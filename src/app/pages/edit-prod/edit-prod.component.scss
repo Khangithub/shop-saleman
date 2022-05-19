@@ -1,9 +1,23 @@
-.prod-modal-ct {
-  display: flex;
-  flex-direction: row;
-  padding: 20px;
+.edit-prod {
 
-  .prod-modal-layout {
-    padding: 20px
+  main {
+    position: relative;
+    margin-left: 100px;
+
+    .prod-modal-ct {
+      display: flex;
+      flex-direction: row;
+      padding: 20px;
+      width: 100%;
+      flex: 1;
+
+      .prod-modal-layout {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+    }
   }
+
 }

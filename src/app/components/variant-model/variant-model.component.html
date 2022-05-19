@@ -1,51 +1,31 @@
-<div class="variant-model-ct">
-  <div class="variant-model-header">
-    <input
-      type="text"
-      class="form-control"
-      name="price"
-      placeholder="Variant Name"
-      [value]="variantName"
-      (change)="variantName = $event.target.value"
-    />
-  </div>
-  <div class="variant-model-body">
-    <input
-      type="text"
-      class="form-control"
-      name="price"
-      placeholder="Variant Property"
-      [value]="propName"
-      (change)="propName = $event.target.value"
-    />
-    <input
-      placeholder="Variant Price"
-      type="number"
-      class="form-control"
-      name="price"
-      [value]="propPrice"
-      (change)="propPrice = $event.target.value"
-    />
-    <input
-      type="file"
-      (change)="onAddMedia($event)"
-      accept="video/*,image/*"
-    />
-    <button>x</button>
-    <button>✔ </button>
-  </div>
-</div>
+<div class="variant-model">
+  <label for="variant-name">Variant Name:</label>
+  <input
+    type="text"
+    class="form-control"
+    name="variant-name"
+    placeholder="Size, Color, ..."
+  />
 
-<ng-template #content let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title">Modal title</h4>
-      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-    </div>
-    <div class="modal-body">
-      <p>One fine body&hellip;</p>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
-    </div>
-  </ng-template>
-  <button class="btn btn-outline-primary mb-2 me-2" (click)="openVerticallyCentered(content)">Modal vertically centered</button>
+  <label for="variant-prop-name">Variant Property Name:</label>
+  <input
+    type="text"
+    class="form-control"
+    name="variant-prop-name"
+    placeholder="Big, Medium, Red, Blue, ..."
+  />
+
+  <label for="variant-prop-value">Variant Property Value:</label>
+  <input
+    type="text"
+    class="form-control"
+    name="variant-prop-value"
+    placeholder="10$"
+  />
+
+  <div>
+    <label for="variant-media">Variant Media: <button>+</button></label>
+  </div>
+
+  <button>Add</button>
+</div>
