@@ -1,39 +1,34 @@
 <div class="prod-modal-ct">
   <div class="prod-modal-layout">
-    <form>
-      <label>Name: </label>
-      <input
-        class="form-control"
-        type="text"
-        [value]="currentProd.name"
-        (change)="currentProd.name = $event.target.value"
-      />
-    </form>
+    <label>Name: </label>
+    <input
+      class="form-control"
+      type="text"
+      [value]="currentProd.name"
+      (change)="currentProd.name = $event.target.value"
+    />
 
-    <form>
-      <label>Price: </label>
-      <input
-        type="number"
-        class="form-control"
-        min="0"
-        [value]="currentProd.price"
-        (change)="currentProd.price = $event.target.value"
-      />
-    </form>
-    <form>
-      <label>Discount (%): </label>
-      <input
-        type="number"
-        class="form-control"
-        min="0"
-        max="100"
-        [value]="currentProd.discount"
-        (change)="currentProd.discount = $event.target.value"
-      />
-    </form>
+    <label>Price: </label>
+    <input
+      type="number"
+      class="form-control"
+      min="0"
+      [value]="currentProd.price"
+      (change)="currentProd.price = $event.target.value"
+    />
 
-    <form>
-      <label for="product-media">Media: </label>
+    <label>Discount (%): </label>
+    <input
+      type="number"
+      class="form-control"
+      min="0"
+      max="100"
+      [value]="currentProd.discount"
+      (change)="currentProd.discount = $event.target.value"
+    />
+
+    <!-- <div>
+      <label for="product-media">Variants: </label>
       <input
         type="file"
         (change)="onFileChange($event)"
@@ -43,70 +38,23 @@
         accept="video/*,image/*"
       />
       <button (click)="onSubmit($event)">Upload Media</button>
-      <!-- <div class="prod-media-list">
-        <img
-          [src]="currentProd.productImage[0]"
-          alt="prod-media"
-          style="height: 40px; width: 40px"
-          draggable="true"
-          (drop)="dropMedia($event)"
-          (dragover)="allowDrag($event)"
-          (dragstart)="dragMedia($event)"
-          id="media-1"
-        />
-        <img
-          src="https://cdn.sstatic.net/Img/teams/teams-illo-free-sidebar-promo.svg?v=47faa659a05e"
-          alt="prod-media"
-          style="height: 40px; width: 40px"
-          draggable="true"
-          (drop)="dropMedia($event)"
-          (dragover)="allowDrag($event)"
-          (dragstart)="dragMedia($event)"
-          id="media-2"
-        />
-        <img
-          src="https://gamek.mediacdn.vn/133514250583805952/2021/1/15/1-16106966278281009206635.jpg"
-          alt="prod-media"
-          style="height: 40px; width: 40px"
-          draggable="true"
-          (drop)="dropMedia($event)"
-          (dragover)="allowDrag($event)"
-          (dragstart)="dragMedia($event)"
-          id="media-3"
-        />
-        <video
-          width="40"
-          height="40"
-          controls
-          draggable="true"
-          (drop)="dropMedia($event)"
-          (dragover)="allowDrag($event)"
-          (dragstart)="dragMedia($event)"
-          id="media-4"
-        >
-          <source
-            src="https://static.videezy.com/system/resources/previews/000/044/479/original/banana.mp4"
-            type="video/mp4"
-          />
-        </video>
-      </div> -->
       <div *ngFor="let media of currentProd.mediaList; index as i">
-        <ng-template [ngIf]="media.mimetype.includes('image')">
+        <ng-container *ngIf="media.mimetype.includes('image'); else elseBlock">
           <img
             [src]="media.filename"
             alt="prod-media"
-            style="height: 40px; width: 40px"
+            style="height: 100px; width: 100px"
             draggable="true"
             (drop)="dropMedia($event)"
             (dragover)="allowDrag($event)"
             (dragstart)="dragMedia($event)"
             [id]="media._id"
           />
-        </ng-template>
-        <ng-template [ngIf]="media.mimetype.includes('video')">
+        </ng-container>
+        <ng-template #elseBlock>
           <video
-            width="40"
-            height="40"
+            width="100"
+            height="100"
             controls
             draggable="true"
             (drop)="dropMedia($event)"
@@ -114,47 +62,39 @@
             (dragstart)="dragMedia($event)"
             [id]="media._id"
           >
-            <source
-              [src]="media.filename"
-              type="video/mp4"
-            />
+            <source [src]="media.filename" type="video/mp4" />
           </video>
         </ng-template>
       </div>
-    </form>
+    </div> -->
   </div>
 
   <div class="prod-modal-layout">
-    <form>
-      <label>Category: </label>
-      <select
-        class="form-control"
-        [value]="currentProd.category"
-        (change)="currentProd.category = $event.target.value"
-      >
-        <option value="book">book</option>
-        <option value="technology">technology</option>
-        <option value="food">food</option>
-      </select>
-    </form>
-    <form>
-      <label>Manufacturer: </label>
-      <input
-        class="form-control"
-        type="text"
-        [value]="currentProd.manufacturer"
-        (change)="currentProd.manufacturer = $event.target.value"
-      />
-    </form>
-    <form>
-      <label>Description: </label>
-      <textarea
-        class="form-control"
-        rows="5"
-        [value]="currentProd.description"
-        (change)="currentProd.description = $event.target.value"
-      ></textarea>
-    </form>
+    <label>Category: </label>
+    <select
+      class="form-control"
+      [value]="currentProd.category"
+      (change)="currentProd.category = $event.target.value"
+    >
+      <option value="book">book</option>
+      <option value="technology">technology</option>
+      <option value="food">food</option>
+    </select>
+
+    <label>Manufacturer: </label>
+    <input
+      class="form-control"
+      type="text"
+      [value]="currentProd.manufacturer"
+      (change)="currentProd.manufacturer = $event.target.value"
+    />
+
+    <label>Description: </label>
+    <textarea
+      class="form-control"
+      rows="5"
+      [value]="currentProd.description"
+      (change)="currentProd.description = $event.target.value"
+    ></textarea>
   </div>
 </div>
-<button>Add</button>

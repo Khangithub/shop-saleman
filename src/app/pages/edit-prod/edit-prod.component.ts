@@ -17,7 +17,7 @@ export class EditProdComponent implements OnInit {
     this.currentProd = await this.api.getProd(prodId);
   }
 
-  allowDrag(e: any): void {
+  allowDrag(e: DragEvent): void {
     e.preventDefault();
   }
 
