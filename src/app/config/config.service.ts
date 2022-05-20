@@ -66,7 +66,7 @@ export class ConfigService {
     });
   }
 
-  async uploadProdMedia(files, prodId: string) {
+  async uploadProdMedia(files: File[], prodId: string) {
     const fd = new FormData();
     for (let i = 0; i < files.length; i++) {
       fd.append("shop-prod", files[i]);
@@ -83,5 +83,30 @@ export class ConfigService {
     return this.http
       .patch(environment.UPLOAD_PRODUCT_MEDIA + prodId, fd, { headers })
       .toPromise();
+  }
+
+  async uploadMedia(files: File[]) {
+    try {
+      let currentUserCookie = this.cookieService.get("token"); // To Get Cookie
+
+      if (!currentUserCookie) {
+        return this.route.navigate(["/login"]);
+      }
+
+      const fd = new FormData();
+      for (let i = 0; i < files.length; i++) {
+        fd.append("user-media", files[i]);
+      }
+
+      const headers = { Authorization: "Bearer " + currentUserCookie };
+
+      const data: any = await this.http
+        .post(environment.UPLOAD_USER_MEDIA, fd, { headers })
+        .toPromise();
+      
+      return data.mediaList;
+    } catch (err) {
+      console.log("err", err);
+    }
   }
 }
