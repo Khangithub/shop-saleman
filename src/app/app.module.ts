@@ -7,11 +7,11 @@ import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { HomeComponent } from "./pages/home/home.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
-import { ProdListComponent } from './components/prod-list/prod-list.component';
-import { EditProdComponent } from './pages/edit-prod/edit-prod.component';
-import { NotfoundComponent } from './pages/notfound/notfound.component';
-import { VariantModelComponent } from './components/variant-model/variant-model.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ProdListComponent } from "./components/prod-list/prod-list.component";
+import { EditProdComponent } from "./pages/edit-prod/edit-prod.component";
+import { NotfoundComponent } from "./pages/notfound/notfound.component";
+import { VariantModelComponent } from "./components/variant-model/variant-model.component";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [
@@ -24,7 +24,13 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     NotfoundComponent,
     VariantModelComponent,
   ],
-  imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule, NgbModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    AppRoutingModule,
+    NgbModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

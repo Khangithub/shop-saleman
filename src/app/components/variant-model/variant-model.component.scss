@@ -1,6 +1,9 @@
+@import '../../../styles/_animation.scss';
+
 .variant-model {
   background: lightgray;
   padding: 10px;
+  @include fadeIn;
 
   border: 1px solid lightgray;
   border-radius: 10px;
