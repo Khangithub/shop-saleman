@@ -1,3 +1,4 @@
+// fade in animation
 @mixin fadeIn {
   animation: fadein 2s;
   -moz-animation: fadein 2s;
@@ -52,4 +53,11 @@
   to {
     opacity: 1;
   }
+}
+
+// fade out animation
+@mixin fadeOut {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 2s linear;
 }
