@@ -1,3 +1,4 @@
+import { ChatsComponent } from "./pages/chats/chats.component";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { EditProdComponent } from "./pages/edit-prod/edit-prod.component";
@@ -9,6 +10,10 @@ const routes: Routes = [
   {
     path: "login",
     component: LoginComponent,
+  },
+  {
+    path: "chats",
+    component: ChatsComponent,
   },
   {
     path: "",

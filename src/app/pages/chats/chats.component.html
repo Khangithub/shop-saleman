@@ -1,0 +1,8 @@
+<input
+  type="text"
+  name="msg"
+  id="msg"
+  [value]="content"
+  (change)="content = $event.target.value"
+/>
+<button (click)="sendMsg()">Send</button>
