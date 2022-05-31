@@ -3,7 +3,7 @@
   <main>
     <div class="chats-ct">
       <div *ngFor="let chat of chats; index as i">
-        <div class="chat-item-ct">
+        <div class="chat-item-ct" (click)="joinRoom(chat.product, chat.buyer)">
           <img [src]="chat.product.productImage" alt="prod-img" />
           <div class="chat-item-content">
             <b [innerText]="chat.messages[0].from.username"></b>
@@ -19,7 +19,9 @@
                   "
                 ></small>
                 <span [innerText]="chat.messages[0].content"></span>
-                <small>9m ago</small>
+                <small
+                  [innerText]="convertViaTime(chat.messages[0].createdAt)"
+                ></small>
               </div>
             </ng-container>
             <ng-template #elseBlock> media </ng-template>
@@ -27,6 +29,18 @@
         </div>
       </div>
     </div>
-    <div class="msgs-ct">lightblue</div>
+    <div class="msgs-ct">
+      <div class="msgs-header-ct"></div>
+      <div class="msgs-body-ct">
+        <textarea
+          rows="2"
+          type="text"
+          [value]="content"
+          (change)="content = $event.target.value"
+          placeholder="Aa"
+        ></textarea>
+        <button (click)="sendMsg()">Send</button>
+      </div>
+    </div>
   </main>
 </div>

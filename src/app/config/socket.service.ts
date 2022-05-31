@@ -46,6 +46,7 @@ export class SocketService {
   }
 
   sendMessage(data: any) {
+    console.log("data", data);
     this.socket.emit("send_message", data);
   }
 

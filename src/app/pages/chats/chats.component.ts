@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { UserService } from "src/app/config/user.service";
 import { SocketService } from "src/app/config/socket.service";
 import { ChatService } from "src/app/config/chat.service";
+import TimeUtil from "src/app/utils/timeUtil.js";
 
 @Component({
   selector: "app-chats",
@@ -12,6 +13,8 @@ export class ChatsComponent implements OnInit {
   currentUser: any;
   content: string = "";
   chats: any[] = [];
+  selectedProd: any;
+  roomName: string = "";
 
   constructor(
     private _socketService: SocketService,
@@ -22,19 +25,28 @@ export class ChatsComponent implements OnInit {
   async ngOnInit() {
     this.currentUser = await this._userService.getCurrentUser();
     this.chats = await this._chatService.getChats(this.currentUser._id);
-    this._socketService.joinRoom(
-      "5eb13649cc26cc53d0bb2632-5e7330cd57787b33a8b01225-5e4ac9b59fb2690714b40bf9-buying"
-    );
   }
 
-  convertViaTime(time: string) {}
+  async joinRoom(prod: any, buyer: string) {
+    this.selectedProd = prod;
+    this.roomName = `${buyer}-${this.selectedProd.saler._id}-${this.selectedProd._id}-buying`;
+    this._socketService.joinRoom(this.roomName);
+  }
+
+  convertViaTime(time: string) {
+    return TimeUtil.convertTimestamp(time);
+  }
 
   sendMsg() {
     this._socketService.sendMessage({
+      room: this.roomName,
+      productId: this.selectedProd._id,
+      productImage: this.selectedProd.productImage,
+      productName: this.selectedProd.name,
+      salerId: this.selectedProd.saler._id,
+      salerUsername: this.selectedProd.saler.username,
       content: this.content,
-      room: "5eb13649cc26cc53d0bb2632-5e7330cd57787b33a8b01225-5e4ac9b59fb2690714b40bf9-buying",
-      product: "5e4ac9b59fb2690714b40bf9",
-      from: this.currentUser._id,
+      fromId: this.currentUser._id,
       type: "text",
       createdAt: new Date(),
     });
