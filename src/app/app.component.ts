@@ -1,6 +1,6 @@
 import { OnInit } from "@angular/core";
 import { Component } from "@angular/core";
-import { ConfigService } from "./config/config.service";
+import { UserService } from "./config/user.service";
 
 @Component({
   selector: "app-root",
@@ -10,7 +10,7 @@ import { ConfigService } from "./config/config.service";
 export class AppComponent implements OnInit {
   loadedFeature = "recipe";
 
-  constructor(private api: ConfigService) {
+  constructor(private api: UserService) {
 
   }
 

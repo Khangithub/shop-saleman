@@ -1,4 +1,4 @@
-import { ConfigService } from "src/app/config/config.service";
+import { UserService } from "src/app/config/user.service";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 
@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
 export class NavbarComponent implements OnInit {
   isHomePage: boolean;
   currentUser;
-  constructor(private route: Router, private api: ConfigService) {
+  constructor(private route: Router, private api: UserService) {
     this.isHomePage = this.route.url === "/" ? true : false;
   }
 

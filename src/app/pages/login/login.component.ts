@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
-import { ConfigService } from "../../config/config.service";
+import { UserService } from "../../config/user.service";
 
 @Component({
   selector: "app-login",
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   visiblePwd: boolean = false;
 
   constructor(
-    private api: ConfigService,
+    private api: UserService,
     private route: Router,
     private cookieService: CookieService
   ) {}

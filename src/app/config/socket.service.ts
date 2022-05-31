@@ -4,7 +4,7 @@ import { Observable } from "rxjs/Observable";
 import { environment } from "src/environments/environment";
 
 @Injectable({ providedIn: "root" })
-export class ChatService {
+export class SocketService {
   private socket = io.connect(environment.APP_ROOT);
 
   joinRoom(roomName: string) {

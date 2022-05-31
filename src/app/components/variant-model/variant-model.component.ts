@@ -1,6 +1,7 @@
+import { ProdService } from "src/app/config/prod.service";
 import { Component, Input, OnInit } from "@angular/core";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { ConfigService } from "src/app/config/config.service";
+import { UserService } from "src/app/config/user.service";
 
 @Component({
   selector: "app-variant-model",
@@ -19,10 +20,14 @@ export class VariantModelComponent implements OnInit {
 
   @Input() public openVairantModal: boolean;
 
-  constructor(private modalService: NgbModal, private api: ConfigService) {}
+  constructor(
+    private modalService: NgbModal,
+    private _userService: UserService,
+    private _prodService: ProdService
+  ) {}
 
   async ngOnInit() {
-    let user = await this.api.getCurrentUser();
+    let user = await this._userService.getCurrentUser();
 
     for (let i = 0; i < user.mediaList.length; i++) {
       const element = user.mediaList[i];
@@ -47,12 +52,12 @@ export class VariantModelComponent implements OnInit {
   }
 
   async addUserImg() {
-    const _imgs: any = await this.api.uploadMedia(this.selectedFiles);
+    const _imgs: any = await this._prodService.uploadMedia(this.selectedFiles);
     this.imgs.push(_imgs.map((_img) => _img.filename));
   }
 
   async addUserVid() {
-    const _vids: any = await this.api.uploadMedia(this.selectedFiles);
+    const _vids: any = await this._prodService.uploadMedia(this.selectedFiles);
     this.vids.push(_vids.map((_vid) => _vid.filename));
   }
 }

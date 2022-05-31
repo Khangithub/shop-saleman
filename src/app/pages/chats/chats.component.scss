@@ -1,0 +1,65 @@
+@import '../../../styles/colors';
+
+.chat {
+  --navbarWidth: 100px;
+
+  main {
+    position: relative;
+    margin-left: 100px;
+    flex: 1;
+    display: flex;
+    width: calc(100% - var(--navbarWidth));
+
+    .chats-ct {
+      width: 100%;
+      flex: .33;
+
+      .chat-item-ct {
+        display: flex;
+        align-items: center;
+
+        margin: 5px;
+        padding: 5px;
+
+        cursor: pointer;
+
+        &:hover {
+          background: $darkGray;
+          border-radius: 5px;
+        }
+
+        img {
+          width: 60px;
+          height: 60px;
+        }
+
+        .chat-msg {
+          display: flex;
+
+          small {
+            font-style: italic;
+          }
+
+          span {
+            display: inline-block;
+            width: 250px;
+            
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            position: relative;
+            bottom: 3px;
+            margin-left: 5px;
+          }
+        }
+      }
+    }
+
+    .msgs-ct {
+      background: lightblue;
+      width: 100%;
+      flex: .67;
+    }
+  }
+}
