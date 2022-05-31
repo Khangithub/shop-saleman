@@ -32,14 +32,30 @@
     <div class="msgs-ct">
       <div class="msgs-header-ct"></div>
       <div class="msgs-body-ct">
-        <textarea
-          rows="2"
-          type="text"
-          [value]="content"
-          (change)="content = $event.target.value"
-          placeholder="Aa"
-        ></textarea>
-        <button (click)="sendMsg()">Send</button>
+        <div class="current-msgs-ct">
+          <div *ngFor="let msg of msgs; index as i">
+            <div
+              class="msg-item-ct"
+              [class]="
+                msg.from._id === currentUser._id ? 'my-msg' : 'client-msg'
+              "
+            >
+              <span [innerText]="msg.content"></span>
+              <small [innerText]="convertViaTime(msg.createdAt)"></small>
+              <small>✅</small>
+            </div>
+          </div>
+        </div>
+        <div class="textbox-ct">
+          <textarea
+            rows="2"
+            type="text"
+            [value]="content"
+            (change)="content = $event.target.value"
+            placeholder="Aa"
+          ></textarea>
+          <button (click)="sendMsg()">Send</button>
+        </div>
       </div>
     </div>
   </main>
