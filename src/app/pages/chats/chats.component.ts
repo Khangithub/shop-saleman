@@ -17,6 +17,7 @@ export class ChatsComponent implements OnInit {
   selectedProd: any;
   selectedIndex: number = 0;
   roomName: string = "";
+  buyer: any;
 
   constructor(
     private _socketService: SocketService,
@@ -30,11 +31,13 @@ export class ChatsComponent implements OnInit {
     this.msgs = await this._chatService.getMsgs(this.chats[0].room);
     this.selectedProd = this.chats[0].product;
     this.roomName = this.chats[0].room;
+    this.buyer = this.chats[0].buyer;
   }
 
-  async joinRoom(prod: any, buyer: string, i: number) {
+  async joinRoom(prod: any, buyer: any, i: number) {
+    this.buyer = buyer;
     this.selectedProd = prod;
-    this.roomName = `${buyer}-${this.selectedProd.saler._id}-${this.selectedProd._id}-buying`;
+    this.roomName = `${buyer._id}-${this.selectedProd.saler._id}-${this.selectedProd._id}-buying`;
     this.msgs = await this._chatService.getMsgs(this.roomName);
     this._socketService.joinRoom(this.roomName);
     this.selectedIndex = i;
