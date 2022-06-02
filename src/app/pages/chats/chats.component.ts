@@ -23,7 +23,17 @@ export class ChatsComponent implements OnInit {
     private _socketService: SocketService,
     private _userService: UserService,
     private _chatService: ChatService
-  ) {}
+  ) {
+    this._socketService
+      .newMessageReceived()
+      .subscribe(({ fromId, content, createdAt, type, mediaList }) => {
+        //update msgs
+        this.msgs = [
+          ...this.msgs,
+          { from: { _id: fromId }, content, createdAt, type, mediaList },
+        ];
+      });
+  }
 
   async ngOnInit() {
     this.currentUser = await this._userService.getCurrentUser();

@@ -46,14 +46,13 @@ export class SocketService {
   }
 
   sendMessage(data: any) {
-    console.log("data", data);
     this.socket.emit("send_message", data);
   }
 
   newMessageReceived() {
-    let observable = new Observable<{ user: String; message: String }>(
+    let observable = new Observable(
       (observer) => {
-        this.socket.on("new message", (data) => {
+        this.socket.on("receive_message", (data) => {
           observer.next(data);
         });
         return () => {
