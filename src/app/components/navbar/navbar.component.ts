@@ -8,11 +8,8 @@ import { Router } from "@angular/router";
   styleUrls: ["./navbar.component.scss"],
 })
 export class NavbarComponent implements OnInit {
-  isHomePage: boolean;
   currentUser;
-  constructor(private route: Router, private api: UserService) {
-    this.isHomePage = this.route.url === "/" ? true : false;
-  }
+  constructor(private route: Router, private api: UserService) {}
 
   async ngOnInit() {
     this.currentUser = await this.api.getCurrentUser();

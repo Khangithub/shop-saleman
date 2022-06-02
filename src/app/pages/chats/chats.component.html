@@ -3,7 +3,13 @@
   <main>
     <div class="chats-ct">
       <div *ngFor="let chat of chats; index as i">
-        <div class="chat-item-ct" (click)="joinRoom(chat.product, chat.buyer)">
+        <div
+          class="chat-item-ct"
+          [class]="
+            selectedIndex === i ? 'chat-item-ct--active' : 'chat-item-ct'
+          "
+          (click)="joinRoom(chat.product, chat.buyer, i)"
+        >
           <img [src]="chat.product.productImage" alt="prod-img" />
           <div class="chat-item-content">
             <b [innerText]="chat.messages[0].from.username"></b>
@@ -30,8 +36,7 @@
       </div>
     </div>
     <div class="msgs-ct">
-      <div class="msgs-header-ct"></div>
-      <div class="msgs-body-ct">
+      <div class="msgs-header-ct">
         <div class="current-msgs-ct">
           <div *ngFor="let msg of msgs; index as i">
             <div
@@ -46,16 +51,17 @@
             </div>
           </div>
         </div>
-        <div class="textbox-ct">
-          <textarea
-            rows="2"
-            type="text"
-            [value]="content"
-            (change)="content = $event.target.value"
-            placeholder="Aa"
-          ></textarea>
-          <button (click)="sendMsg()">Send</button>
-        </div>
+      </div>
+      <div class="textbox-ct">
+        <textarea
+          rows="2"
+          type="text"
+          [value]="content"
+          (change)="content = $event.target.value"
+          (keyup)="enter2SendMsg($event)"
+          placeholder="Aa"
+        ></textarea>
+        <button (click)="sendMsg()">🚀</button>
       </div>
     </div>
   </main>

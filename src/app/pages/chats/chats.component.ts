@@ -15,6 +15,7 @@ export class ChatsComponent implements OnInit {
   chats: any[] = [];
   msgs: any[] = [];
   selectedProd: any;
+  selectedIndex: number = 0;
   roomName: string = "";
 
   constructor(
@@ -26,13 +27,17 @@ export class ChatsComponent implements OnInit {
   async ngOnInit() {
     this.currentUser = await this._userService.getCurrentUser();
     this.chats = await this._chatService.getChats(this.currentUser._id);
+    this.msgs = await this._chatService.getMsgs(this.chats[0].room);
+    this.selectedProd = this.chats[0].product;
+    this.roomName = this.chats[0].room;
   }
 
-  async joinRoom(prod: any, buyer: string) {
+  async joinRoom(prod: any, buyer: string, i: number) {
     this.selectedProd = prod;
     this.roomName = `${buyer}-${this.selectedProd.saler._id}-${this.selectedProd._id}-buying`;
     this.msgs = await this._chatService.getMsgs(this.roomName);
     this._socketService.joinRoom(this.roomName);
+    this.selectedIndex = i;
   }
 
   convertViaTime(time: string) {
@@ -40,19 +45,28 @@ export class ChatsComponent implements OnInit {
   }
 
   sendMsg() {
-    this._socketService.sendMessage({
-      room: this.roomName,
-      productId: this.selectedProd._id,
-      productImage: this.selectedProd.productImage,
-      productName: this.selectedProd.name,
-      salerId: this.selectedProd.saler._id,
-      salerUsername: this.selectedProd.saler.username,
-      content: this.content,
-      fromId: this.currentUser._id,
-      type: "text",
-      createdAt: new Date(),
-    });
+    if (this.content) {
+      this._socketService.sendMessage({
+        room: this.roomName,
+        productId: this.selectedProd._id,
+        productImage: this.selectedProd.productImage,
+        productName: this.selectedProd.name,
+        salerId: this.selectedProd.saler._id,
+        salerUsername: this.selectedProd.saler.username,
+        content: this.content,
+        fromId: this.currentUser._id,
+        type: "text",
+        createdAt: new Date(),
+      });
+    }
 
     this.content = "";
+  }
+
+  enter2SendMsg(e: any) {
+    this.content = e.target.value;
+    if (e.key === "Enter") {
+      return this.sendMsg();
+    }
   }
 }
