@@ -13,6 +13,7 @@ import { NotfoundComponent } from "./pages/notfound/notfound.component";
 import { VariantModelComponent } from "./components/variant-model/variant-model.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ChatsComponent } from './pages/chats/chats.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ChatsComponent } from './pages/chats/chats.component';
     NotfoundComponent,
     VariantModelComponent,
     ChatsComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,

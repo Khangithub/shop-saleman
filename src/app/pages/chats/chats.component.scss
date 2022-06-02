@@ -16,6 +16,11 @@
     .chats-ct {
       width: 100%;
       flex: .33;
+      padding: 5px;
+
+      h2 {
+        height: 60px;
+      }
 
       .chat-item-ct {
         display: flex;
@@ -34,6 +39,7 @@
         img {
           width: 60px;
           height: 60px;
+          margin-right: 5px;
         }
 
         .chat-msg {
@@ -57,23 +63,37 @@
           }
         }
       }
+
+      .chat-item-ct--active {
+        background: $darkGray;
+        border-radius: 5px;
+      }
     }
 
     .msgs-ct {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 5px;
+
+      flex: 0.67;
       height: 100vh;
       width: 100%;
-      flex: .67;
 
-      .msgs-body-ct {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
+      .msgs-main-ct {
+        .msgs-header-ct {
+          display: flex;
+          align-items: center;
 
-        flex: 1;
-        height: 100%;
+          img {
+            @include avatar;
+          }
+        }
 
-        .current-msgs-ct {
+        .msgs-body-ct {
           max-height: 550px;
+          padding: 5px;
+          
           overflow-y: scroll;
           @include customedScrollbar;
 
@@ -91,7 +111,7 @@
 
             span {
               padding: 5px;
-              background: cornflowerblue;
+              background: $cornFlowerBlue;
               border-radius: 10px 0 10px 10px;
             }
           }
@@ -105,6 +125,34 @@
               border-radius: 0 10px 10px 10px;
             }
           }
+        }
+      }
+
+      .textbox-ct {
+        display: inline-flex;
+        background: $darkGray;
+        border-radius: 10px;
+        padding: 5px;
+
+        textarea {
+          width: 100%;
+          background: $darkGray;
+          border: none;
+          outline: none;
+
+          &::placeholder {
+            color: black;
+          }
+        }
+
+        button {
+          height: 50px;
+          width: 50px;
+          margin: 3px;
+          border-radius: 50%;
+          border: none;
+          outline: none;
+          background: $pink;
         }
       }
     }

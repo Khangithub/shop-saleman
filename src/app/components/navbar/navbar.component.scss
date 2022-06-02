@@ -1,4 +1,4 @@
-@import '../../../styles/layout';
+@import '../../../styles/colors';
 
 .nav-bar-ct {
   background-color: $lightGray;
@@ -24,8 +24,8 @@
     margin-bottom: 60px;
   }
 
-  .rounded-circle {
-    height: 35px;
-    width: 35px;
+  .nav-item {
+    height: 25px;
+    width: 25px;
   }
 }
