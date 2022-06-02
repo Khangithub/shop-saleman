@@ -26,13 +26,74 @@ export class ChatsComponent implements OnInit {
   ) {
     this._socketService
       .newMessageReceived()
-      .subscribe(({ fromId, content, createdAt, type, mediaList }) => {
-        //update msgs
-        this.msgs = [
-          ...this.msgs,
-          { from: { _id: fromId }, content, createdAt, type, mediaList },
-        ];
-      });
+      .subscribe(
+        ({
+          isNewChat,
+          room,
+          productId,
+          productImage,
+          productName,
+          salerId,
+          salerUsername,
+          content,
+          fromId,
+          type,
+          createdAt,
+          mediaList,
+        }) => {
+          // update msgs
+          this.msgs = [
+            ...this.msgs,
+            { from: { _id: fromId }, content, createdAt, type, mediaList },
+          ];
+
+          // update chats
+          if (isNewChat) {
+            let newChat = {
+              product: {
+                productImage,
+                _id: productId,
+                name: productName,
+                saler: {
+                  username: salerUsername,
+                  _id: salerId,
+                },
+              },
+              room,
+              messages: [
+                {
+                  type,
+                  content,
+                  from: {
+                    _id: fromId,
+                  },
+                  createdAt,
+                  mediaList,
+                },
+              ],
+            };
+
+            this.selectedIndex = 0;
+            this.chats = [newChat, ...this.chats];
+          } else {
+            let chatIndex = this.chats.findIndex((chat) => chat.room === room);
+            let currentChat = this.chats.splice(chatIndex, 1)[0];
+
+            currentChat.messages[0] = {
+              type,
+              content,
+              from: {
+                _id: fromId,
+              },
+              createdAt,
+              mediaList,
+            };
+
+            this.selectedIndex = 0;
+            this.chats = [currentChat, ...this.chats];
+          }
+        }
+      );
   }
 
   async ngOnInit() {
