@@ -8,8 +8,8 @@ import { UserService } from 'src/app/config/user.service';
   styleUrls: ["./home.component.scss"],
 })
 export class HomeComponent implements OnInit {
-  currentUser;
-  prods;
+  currentUser: any;
+  prods: any;
 
   constructor(private _prodService: ProdService, private _userService: UserService) {}
 

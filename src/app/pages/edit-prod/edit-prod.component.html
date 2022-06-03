@@ -38,6 +38,10 @@
         >
         <app-variant-model
           *ngIf="openVairantModal"
+          [variantName]="variantName"
+          [propName]="propName"
+          [propPrice]="propPrice"
+          [propImgUrl]="propImgUrl"
         ></app-variant-model>
         <!-- <div>
       <label for="product-media">Variants: </label>

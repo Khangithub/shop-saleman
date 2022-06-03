@@ -1,0 +1,12 @@
+.prop-img-item {
+  height: 100px;
+  width: 100px;
+  margin: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.7;
+    border: 5px solid red;
+  }
+}

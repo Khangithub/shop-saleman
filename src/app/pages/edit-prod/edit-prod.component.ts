@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { ProdService } from "src/app/config/prod.service";
 
@@ -8,15 +8,24 @@ import { ProdService } from "src/app/config/prod.service";
   styleUrls: ["./edit-prod.component.scss"],
 })
 export class EditProdComponent implements OnInit {
-  currentProd;
+  currentProd: any;
   selectedFiles = [];
+
+  variantName: string = "";
+  propName: string = "";
+  propPrice: number = 0;
+  propImgUrl: string = "";
+
   public openVairantModal: boolean = false;
 
-  constructor(private route: ActivatedRoute, private api: ProdService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private _prodService: ProdService
+  ) {}
 
   async ngOnInit() {
     let prodId = this.route.snapshot.paramMap.get("prodId");
-    this.currentProd = await this.api.getProd(prodId);
+    this.currentProd = await this._prodService.getProd(prodId);
   }
 
   allowDrag(e: DragEvent): void {
@@ -44,12 +53,12 @@ export class EditProdComponent implements OnInit {
     parentA.insertBefore(nodeB, siblingA);
   }
 
-  onFileChange(ev) {
+  onFileChange(ev: any) {
     this.selectedFiles = ev.target.files;
   }
 
   async onSubmit() {
-    const res: any = await this.api.uploadProdMedia(
+    const res: any = await this._prodService.uploadProdMedia(
       this.selectedFiles,
       this.currentProd._id
     );

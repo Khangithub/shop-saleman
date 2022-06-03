@@ -4,6 +4,8 @@
     type="text"
     class="form-control"
     name="variant-name"
+    [value]="variantName"
+    (change)="variantName = $event.target.value"
     placeholder="Size, Color, ..."
   />
 
@@ -12,6 +14,8 @@
     type="text"
     class="form-control"
     name="variant-prop-name"
+    [value]="propName"
+    (change)="propName = $event.target.value"
     placeholder="Big, Medium, Red, Blue, ..."
   />
 
@@ -20,79 +24,58 @@
     type="text"
     class="form-control"
     name="variant-prop-value"
+    [value]="propPrice"
+    (change)="propPrice = $event.target.value"
     placeholder="10$"
   />
 
-  <div>
-    <label for="variant-media">
-      Variant Media:
+  <div class="variant-prop-img-ct">
+    <label>
+      Variant Image:
       <button (click)="open(content)">+</button>
     </label>
 
+    <img *ngIf="propImgUrl" [src]="propImgUrl" alt="prop-img-url">
+
     <ng-template #content let-modal>
-      <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
-        <li [ngbNavItem]="1">
-          <a ngbNavLink>Image</a>
-          <ng-template ngbNavContent>
-            <div
-              *ngFor="let _img of imgs; index as i"
-              style="display: inline-block"
-            >
-              <img
-                [src]="_img"
-                alt="user-img"
-                style="height: 100px; width: 100px"
-                [id]="_img._id"
-              />
-            </div>
+      <div class="modal-header">
+        <h4 class="modal-title">Modal title</h4>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="modal.dismiss('Cross click')"
+        >
+          X
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="imgs-ct">
+          <img
+            *ngFor="let imgItem of imgs; index as i"
+            class="prop-img-item"
+            [src]="imgItem"
+            alt="user-img"
+            (click)="propImgUrl = imgItem; modal.dismiss('Cross click')"
+          />
+        </div>
 
-            <form>
-              <input
-                type="file"
-                name="media-img"
-                id="media-img"
-                multiple
-                accept="image/*"
-                (change)="onFileChange($event)"
-              />
-              <button class="btn btn-primary" (click)="addUserImg()">
-                Upload Images
-              </button>
-            </form>
-          </ng-template>
-        </li>
-        <li [ngbNavItem]="2">
-          <a ngbNavLink>Video</a>
-          <ng-template ngbNavContent>
-            <div
-              *ngFor="let _vid of vids; index as i"
-              style="display: inline-block"
-            >
-              <video height="100" width="100" controls>
-                <source [src]="_vid" type="video/mp4" />
-              </video>
-            </div>
-
-            <form>
-              <input
-                type="file"
-                name="media-vid"
-                id="media-vid"
-                multiple
-                accept="video/*"
-                (change)="onFileChange($event)"
-              />
-              <button class="btn btn-primary" (click)="addUserVid()">
-                Upload Videos
-              </button>
-            </form>
-          </ng-template>
-        </li>
-      </ul>
-
-      <div [ngbNavOutlet]="nav" class="mt-2"></div>
+        <form>
+          <input
+            type="file"
+            name="prod-img"
+            id="prod-img"
+            multiple
+            accept="image/*"
+            (change)="onFileChange($event)"
+          />
+          <button class="btn btn-primary" (click)="addVariantPropImg()">
+            Upload Images
+          </button>
+        </form>
+      </div>
     </ng-template>
   </div>
 
-  <button>Add</button>
+  <button (click)="addVariantProp()">Add</button>
 </div>
