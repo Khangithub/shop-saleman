@@ -16,7 +16,7 @@ export class EditProdComponent implements OnInit {
   propPrice: number = 0;
   propImgUrl: string = "";
 
-  public openVairantModal: boolean = false;
+  openVariantModal: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -68,5 +68,9 @@ export class EditProdComponent implements OnInit {
         ...res.mediaList,
       ];
     }
+  }
+
+  closeModal(data: any) {
+    console.log("data", data);
   }
 }

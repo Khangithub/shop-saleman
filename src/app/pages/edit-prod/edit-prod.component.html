@@ -32,17 +32,20 @@
 
         <label
           >Variants:
-          <button (click)="openVairantModal = !openVairantModal">
-            {{ openVairantModal ? "X" : "+" }}
+          <button (click)="openVariantModal = !openVariantModal">
+            {{ openVariantModal ? "X" : "+" }}
           </button></label
         >
+
         <app-variant-model
-          *ngIf="openVairantModal"
+          *ngIf="openVariantModal"
           [variantName]="variantName"
           [propName]="propName"
           [propPrice]="propPrice"
           [propImgUrl]="propImgUrl"
+          (closeModalEvent)="closeModal($event)"
         ></app-variant-model>
+        
         <!-- <div>
       <label for="product-media">Variants: </label>
       <input

@@ -13,11 +13,12 @@ export class VariantModelComponent implements OnInit {
   selectedFiles = [];
   imgs: string[] = [];
 
-  @Input() openVairantModal: boolean;
   @Input() variantName: string;
   @Input() propName: string;
   @Input() propPrice: number;
   @Input() propImgUrl: string;
+
+  @Output() closeModalEvent = new EventEmitter();
 
   constructor(
     private _modalService: NgbModal,
@@ -54,5 +55,11 @@ export class VariantModelComponent implements OnInit {
   }
 
   addVariantProp() {
+    this.closeModalEvent.emit({
+      variantName: this.variantName,
+      propName: this.propName,
+      propPrice: this.propPrice,
+      propImgUrl: this.propImgUrl,
+    });
   }
 }
