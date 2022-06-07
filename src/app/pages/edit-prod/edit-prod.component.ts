@@ -18,6 +18,7 @@ export class EditProdComponent implements OnInit {
   variants = {};
 
   openVariantModal: boolean = false;
+  savingChange = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -40,22 +41,38 @@ export class EditProdComponent implements OnInit {
   dropMedia(e: any): void {
     e.preventDefault();
     var data = e.dataTransfer.getData("variant-transfer");
-    this.swap(document.getElementById(data), e.target.parentNode);
+    this.insertNode(document.getElementById(data), e.target.parentNode);
   }
 
-  swap(nodeA: HTMLElement, nodeB: HTMLElement) {
-    const parentA = nodeA.parentNode;
-    const siblingA = nodeA.nextSibling === nodeB ? nodeA : nodeA.nextSibling;
+  insertNode(nodeA: HTMLElement, nodeB: HTMLElement) {
+    let dragId = nodeA.id;
+    let dropId = nodeB.id;
 
-    // Move `nodeA` to before the `nodeB`
-    nodeB.parentNode.insertBefore(nodeA, nodeB);
+    let dragArr = dragId.split("-");
+    let dragVariant = dragArr[0];
+    let dragIndex = parseInt(dragArr[1]);
+    let dragTag = dragArr[2];
 
-    // Move `nodeB` to before the sibling of `nodeA`
-    // parentA.insertBefore(nodeB, siblingA);
+    let dropArr = dropId.split("-");
+    let dropVariant = dropArr[0];
+    let dropIndex = parseInt(dropArr[1]);
+    let dropTag = dropArr[2];
+
+    if (dragTag === "variantItem" && dropTag === "variantItem") {
+      let dragData = this.currentProd.variants[dragVariant].splice(
+        dragIndex,
+        1
+      )[0];
+      this.currentProd.variants[dropVariant].splice(dropIndex, 0, dragData);
+    }
   }
 
-  onFileChange(ev: any) {
-    this.selectedFiles = ev.target.files;
+  removeVariant(key: string, index: number) {
+    this.currentProd.variants[key].splice(index, 1);
+    if (this.currentProd.variants[key].length === 0) {
+      delete this.currentProd.variants[key];
+    }
+    debugger;
   }
 
   async onSubmit() {
@@ -81,16 +98,27 @@ export class EditProdComponent implements OnInit {
     };
 
     if (propImgUrl && propName && propPrice && variantName) {
-      if (this.variants.hasOwnProperty(variantName)) {
-        this.variants[variantName].unshift(varProp);
+      if (this.currentProd.variants.hasOwnProperty(variantName)) {
+        this.currentProd.variants[variantName].unshift(varProp);
       } else {
         let variant = {};
         variant[variantName] = [];
         variant[variantName].push(varProp);
-        this.variants = { ...variant, ...this.variants };
+        this.currentProd.variants = {
+          ...variant,
+          ...this.currentProd.variants,
+        };
       }
 
       this.openVariantModal = false;
+    }
+  }
+
+  async editProd() {
+    this.savingChange = true;
+    const res: any = await this._prodService.editProd(this.currentProd);
+    if (res.updated) {
+      this.savingChange = false;
     }
   }
 }

@@ -7,7 +7,6 @@ import { CookieService } from "ngx-cookie-service";
 @Injectable({
   providedIn: "root",
 })
-
 export class ProdService {
   constructor(
     private http: HttpClient,
@@ -76,8 +75,27 @@ export class ProdService {
       const data: any = await this.http
         .post(environment.UPLOAD_USER_MEDIA, fd, { headers })
         .toPromise();
-      
+
       return data.mediaList;
+    } catch (err) {
+      console.log("err", err);
+    }
+  }
+
+  async editProd(prod: any) {
+    try {
+      let currentUserCookie = this.cookieService.get("token"); // To Get Cookie
+
+      if (!currentUserCookie) {
+        return this.route.navigate(["/login"]);
+      }
+      const headers = { Authorization: "Bearer " + currentUserCookie };
+
+      const prodsReq: any = await this.http
+        .patch(environment.EDIT_PROD, { prod }, { headers })
+        .toPromise();
+
+      return prodsReq;
     } catch (err) {
       console.log("err", err);
     }
