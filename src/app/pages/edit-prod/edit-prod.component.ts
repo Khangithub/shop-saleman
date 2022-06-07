@@ -17,6 +17,7 @@ export class EditProdComponent implements OnInit {
   propImgUrl: string = "";
 
   openVariantModal: boolean = false;
+  savingChange = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,28 +34,44 @@ export class EditProdComponent implements OnInit {
   }
 
   dragMedia(e: any): void {
-    e.dataTransfer.setData("text", e.target.id);
+    e.dataTransfer.setData("variant-transfer", e.target.id);
   }
 
   dropMedia(e: any): void {
     e.preventDefault();
-    var data = e.dataTransfer.getData("text");
-    this.swap(document.getElementById(data), e.target);
+    var data = e.dataTransfer.getData("variant-transfer");
+    this.insertNode(document.getElementById(data), e.target.parentNode);
   }
 
-  swap(nodeA: HTMLElement, nodeB: HTMLElement) {
-    const parentA = nodeA.parentNode;
-    const siblingA = nodeA.nextSibling === nodeB ? nodeA : nodeA.nextSibling;
+  insertNode(nodeA: HTMLElement, nodeB: HTMLElement) {
+    let dragId = nodeA.id;
+    let dropId = nodeB.id;
 
-    // Move `nodeA` to before the `nodeB`
-    nodeB.parentNode.insertBefore(nodeA, nodeB);
+    let dragArr = dragId.split("-");
+    let dragVariant = dragArr[0];
+    let dragIndex = parseInt(dragArr[1]);
+    let dragTag = dragArr[2];
 
-    // Move `nodeB` to before the sibling of `nodeA`
-    parentA.insertBefore(nodeB, siblingA);
+    let dropArr = dropId.split("-");
+    let dropVariant = dropArr[0];
+    let dropIndex = parseInt(dropArr[1]);
+    let dropTag = dropArr[2];
+
+    if (dragTag === "variantItem" && dropTag === "variantItem") {
+      let dragData = this.currentProd.variants[dragVariant].splice(
+        dragIndex,
+        1
+      )[0];
+      this.currentProd.variants[dropVariant].splice(dropIndex, 0, dragData);
+    }
   }
 
-  onFileChange(ev: any) {
-    this.selectedFiles = ev.target.files;
+  removeVariant(key: string, index: number) {
+    this.currentProd.variants[key].splice(index, 1);
+    if (this.currentProd.variants[key].length === 0) {
+      delete this.currentProd.variants[key];
+    }
+    debugger;
   }
 
   async onSubmit() {
@@ -71,6 +88,36 @@ export class EditProdComponent implements OnInit {
   }
 
   closeModal(data: any) {
-    console.log("data", data);
+    let { propImgUrl, propName, propPrice, variantName } = data;
+
+    let varProp = {
+      propName,
+      propPrice,
+      propImgUrl,
+    };
+
+    if (propImgUrl && propName && propPrice && variantName) {
+      if (this.currentProd.variants.hasOwnProperty(variantName)) {
+        this.currentProd.variants[variantName].unshift(varProp);
+      } else {
+        let variant = {};
+        variant[variantName] = [];
+        variant[variantName].push(varProp);
+        this.currentProd.variants = {
+          ...variant,
+          ...this.currentProd.variants,
+        };
+      }
+
+      this.openVariantModal = false;
+    }
+  }
+
+  async editProd() {
+    this.savingChange = true;
+    const res: any = await this._prodService.editProd(this.currentProd);
+    if (res.updated) {
+      this.savingChange = false;
+    }
   }
 }

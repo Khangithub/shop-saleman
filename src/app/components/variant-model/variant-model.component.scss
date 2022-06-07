@@ -8,6 +8,17 @@
   border: 1px solid lightgray;
   border-radius: 10px;
 
+  label {
+    font-weight: 600 !important;
+    font-size: small;
+
+    .add-variant-img-btn {
+      height: 20px !important;
+      width: 20px !important;
+      cursor: pointer;
+    }
+  }
+
   &>button {
     margin-left: auto;
   }

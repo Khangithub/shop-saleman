@@ -32,7 +32,12 @@
   <div class="variant-prop-img-ct">
     <label>
       Variant Image:
-      <button (click)="open(content)">+</button>
+      <img
+        src="../../../assets/svgs/add.svg"
+        alt="variant-img"
+        class="add-variant-img-btn"
+        (click)="open(content)"
+      />
     </label>
 
     <img *ngIf="propImgUrl" [src]="propImgUrl" alt="prop-img-url" />
@@ -56,7 +61,7 @@
             class="prop-img-item"
             [src]="imgItem"
             alt="user-img"
-            (click)="propImgUrl = imgItem; modal.dismiss('Cross click')"
+            (click)="propImgUrl = imgItem; modal.dismiss()"
           />
         </div>
 
@@ -77,5 +82,12 @@
     </ng-template>
   </div>
 
-  <button (click)="addVariantProp()">Add</button>
+  <button
+    (click)="addVariantProp()"
+    [disabled]="
+      propImgUrl && propName && propPrice > 0 && variantName ? false : true
+    "
+  >
+    Add
+  </button>
 </div>
