@@ -15,6 +15,7 @@ export class EditProdComponent implements OnInit {
   propName: string = "";
   propPrice: number = 0;
   propImgUrl: string = "";
+  variants = {};
 
   openVariantModal: boolean = false;
 
@@ -33,13 +34,13 @@ export class EditProdComponent implements OnInit {
   }
 
   dragMedia(e: any): void {
-    e.dataTransfer.setData("text", e.target.id);
+    e.dataTransfer.setData("variant-transfer", e.target.id);
   }
 
   dropMedia(e: any): void {
     e.preventDefault();
-    var data = e.dataTransfer.getData("text");
-    this.swap(document.getElementById(data), e.target);
+    var data = e.dataTransfer.getData("variant-transfer");
+    this.swap(document.getElementById(data), e.target.parentNode);
   }
 
   swap(nodeA: HTMLElement, nodeB: HTMLElement) {
@@ -50,7 +51,7 @@ export class EditProdComponent implements OnInit {
     nodeB.parentNode.insertBefore(nodeA, nodeB);
 
     // Move `nodeB` to before the sibling of `nodeA`
-    parentA.insertBefore(nodeB, siblingA);
+    // parentA.insertBefore(nodeB, siblingA);
   }
 
   onFileChange(ev: any) {
@@ -71,6 +72,25 @@ export class EditProdComponent implements OnInit {
   }
 
   closeModal(data: any) {
-    console.log("data", data);
+    let { propImgUrl, propName, propPrice, variantName } = data;
+
+    let varProp = {
+      propName,
+      propPrice,
+      propImgUrl,
+    };
+
+    if (propImgUrl && propName && propPrice && variantName) {
+      if (this.variants.hasOwnProperty(variantName)) {
+        this.variants[variantName].unshift(varProp);
+      } else {
+        let variant = {};
+        variant[variantName] = [];
+        variant[variantName].push(varProp);
+        this.variants = { ...variant, ...this.variants };
+      }
+
+      this.openVariantModal = false;
+    }
   }
 }

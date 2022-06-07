@@ -45,9 +45,32 @@
           [propImgUrl]="propImgUrl"
           (closeModalEvent)="closeModal($event)"
         ></app-variant-model>
-        
-        <!-- <div>
-      <label for="product-media">Variants: </label>
+
+        <div *ngFor="let vrt of variants | keyvalue; index as i">
+          <div class="variant-item-ct">
+            <b [innerText]="vrt.key"></b>
+            <div
+              class="variant-prop-ct"
+              *ngFor="let varProp of vrt.value; index as y"
+              draggable="true"
+              (drop)="dropMedia($event)"
+              (dragover)="allowDrag($event)"
+              (dragstart)="dragMedia($event)"
+              [id]="'variant-' + vrt.key + '-' + y"
+            >
+              <span [innerText]="varProp.propName"></span>
+              <span>{{ varProp.propPrice }}$</span>
+              <img
+                [src]="varProp.propImgUrl"
+                alt="prop-img"
+                style="height: 50px; width: 50px"
+                draggable="false"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- <label for="product-media">Variants: </label>
       <input
         type="file"
         (change)="onFileChange($event)"
