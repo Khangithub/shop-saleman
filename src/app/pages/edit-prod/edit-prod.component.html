@@ -28,34 +28,34 @@
           max="100"
           [value]="currentProd?.discount"
           (change)="currentProd.discount = $event.target.value"
-        />
+          />
 
-        <label
+          <label
           >Variants:
           <img
-            class="add-variant-btn"
-            (click)="openVariantModal = !openVariantModal"
-            [src]="
-              openVariantModal
-                ? '../../../assets/svgs/close.svg'
-                : '../../../assets/svgs/add.svg'
-            "
-            alt="add-variant"
-        /></label>
-
-        <app-variant-model
+          class="add-variant-btn"
+          (click)="openVariantModal = !openVariantModal"
+          [src]="
+          openVariantModal
+          ? '../../../assets/svgs/close.svg'
+          : '../../../assets/svgs/add.svg'
+          "
+          alt="add-variant"
+          /></label>
+          
+          <app-variant-model
           *ngIf="openVariantModal"
           [variantName]="variantName"
           [propName]="propName"
           [propPrice]="propPrice"
           [propImgUrl]="propImgUrl"
           (closeModalEvent)="closeModal($event)"
-        ></app-variant-model>
-
-        <div *ngFor="let vrt of currentProd.variants | keyvalue; index as i">
-          <div class="variant-item-ct" [id]="vrt.key + '-' + i + '-variantCt'">
-            <b [innerText]="vrt.key"></b>
-            <div
+          ></app-variant-model>
+          
+          <div *ngFor="let vrt of currentProd.variants | keyvalue; index as i">
+            <div class="variant-item-ct" [id]="vrt.key + '-' + i + '-variantCt'">
+              <b [innerText]="vrt.key"></b>
+              <div
               class="variant-prop-ct"
               *ngFor="let varProp of vrt.value; index as y"
               draggable="true"
@@ -63,25 +63,31 @@
               (dragover)="allowDrag($event)"
               (dragstart)="dragMedia($event)"
               [id]="vrt.key + '-' + y + '-variantItem'"
-            >
+              >
               <span [innerText]="varProp.propName"></span>
               <span [innerText]="varProp.propPrice + '$'"></span>
               <img
-                [src]="varProp.propImgUrl"
-                alt="prop-img"
+              [src]="varProp.propImgUrl"
+              alt="prop-img"
                 draggable="false"
-              />
-              <img
+                />
+                <img
                 (click)="removeVariant(vrt.key, y)"
                 src="../../../assets/svgs/delete.svg"
-                alt="del-variant"
+              alt="del-variant"
               />
             </div>
           </div>
         </div>
       </div>
-
+      
       <div class="prod-modal-layout">
+        <button
+          (click)="editProd()"
+          [innerText]="savingChange ? 'Saving ...' : 'Save'"
+          [disabled]="savingChange"
+          class="save-change-btn"
+        ></button>
         <label>Category: </label>
         <select
           class="form-control"

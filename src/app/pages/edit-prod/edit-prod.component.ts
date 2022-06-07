@@ -17,6 +17,7 @@ export class EditProdComponent implements OnInit {
   propImgUrl: string = "";
 
   openVariantModal: boolean = false;
+  savingChange = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,42 +27,6 @@ export class EditProdComponent implements OnInit {
   async ngOnInit() {
     let prodId = this.route.snapshot.paramMap.get("prodId");
     this.currentProd = await this._prodService.getProd(prodId);
-    this.currentProd.variants = {
-      color: [
-        {
-          propName: "blue",
-          propPrice: 10,
-          propImgUrl: "",
-        },
-        {
-          propName: "red",
-          propPrice: 10,
-          propImgUrl: "",
-        },
-        {
-          propName: "green",
-          propPrice: 10,
-          propImgUrl: "",
-        },
-      ],
-      size: [
-        {
-          propName: "small",
-          propPrice: 10,
-          propImgUrl: "",
-        },
-        {
-          propName: "medium",
-          propPrice: 10,
-          propImgUrl: "",
-        },
-        {
-          propName: "big",
-          propPrice: 10,
-          propImgUrl: "",
-        },
-      ],
-    };
   }
 
   allowDrag(e: DragEvent): void {
@@ -145,6 +110,14 @@ export class EditProdComponent implements OnInit {
       }
 
       this.openVariantModal = false;
+    }
+  }
+
+  async editProd() {
+    this.savingChange = true;
+    const res: any = await this._prodService.editProd(this.currentProd);
+    if (res.updated) {
+      this.savingChange = false;
     }
   }
 }

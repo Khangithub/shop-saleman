@@ -1,13 +1,14 @@
 export const environment = {
   production: false,
-  APP_ROOT: "http://localhost:5000",
-  GET_CHATS: "http://localhost:5000/chats/of/saleman/",
-  GET_MSGS: "http://localhost:5000/chats/",
-  LOGIN_PWD: "http://localhost:5000/users/login/pwd",
-  GET_CURRENT_USER: "http://localhost:5000/users/me/",
-  GET_PRODUCTS: "http://localhost:5000/products/of/saleman/",
-  GET_PRODUCT: "http://localhost:5000/products/",
+  APP_ROOT: "https://shopeeholic-server.herokuapp.com",
+  GET_CHATS: "https://shopeeholic-server.herokuapp.com/chats/of/saleman/",
+  GET_MSGS: "https://shopeeholic-server.herokuapp.com/chats/",
+  LOGIN_PWD: "https://shopeeholic-server.herokuapp.com/users/login/pwd",
+  GET_CURRENT_USER: "https://shopeeholic-server.herokuapp.com/users/me/",
+  GET_PRODUCTS: "https://shopeeholic-server.herokuapp.com/products/of/saleman/",
+  GET_PRODUCT: "https://shopeeholic-server.herokuapp.com/products/",
   UPLOAD_PRODUCT_MEDIA:
-    "http://localhost:5000/products/saleman/prod/media/",
-  UPLOAD_USER_MEDIA: "http://localhost:5000/users/media",
+    "https://shopeeholic-server.herokuapp.com/products/saleman/prod/media/",
+  UPLOAD_USER_MEDIA: "https://shopeeholic-server.herokuapp.com/users/media",
+  EDIT_PROD: "https://shopeeholic-server.herokuapp.com/products/edit",
 };

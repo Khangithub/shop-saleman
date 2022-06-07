@@ -30,6 +30,13 @@
           }
         }
 
+        .save-change-btn {
+          width: fit-content;
+          display: flex;
+          align-self: flex-end;
+          font-weight: bold;
+        }
+
         .variant-item-ct {
           display: flex;
           flex-wrap: wrap;
