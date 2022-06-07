@@ -32,10 +32,16 @@
 
         <label
           >Variants:
-          <button (click)="openVariantModal = !openVariantModal">
-            {{ openVariantModal ? "X" : "+" }}
-          </button></label
-        >
+          <img
+            class="add-variant-btn"
+            (click)="openVariantModal = !openVariantModal"
+            [src]="
+              openVariantModal
+                ? '../../../assets/svgs/close.svg'
+                : '../../../assets/svgs/add.svg'
+            "
+            alt="add-variant"
+        /></label>
 
         <app-variant-model
           *ngIf="openVariantModal"
@@ -46,8 +52,8 @@
           (closeModalEvent)="closeModal($event)"
         ></app-variant-model>
 
-        <div *ngFor="let vrt of variants | keyvalue; index as i">
-          <div class="variant-item-ct">
+        <div *ngFor="let vrt of currentProd.variants | keyvalue; index as i">
+          <div class="variant-item-ct" [id]="vrt.key + '-' + i + '-variantCt'">
             <b [innerText]="vrt.key"></b>
             <div
               class="variant-prop-ct"
@@ -56,59 +62,23 @@
               (drop)="dropMedia($event)"
               (dragover)="allowDrag($event)"
               (dragstart)="dragMedia($event)"
-              [id]="'variant-' + vrt.key + '-' + y"
+              [id]="vrt.key + '-' + y + '-variantItem'"
             >
               <span [innerText]="varProp.propName"></span>
-              <span>{{ varProp.propPrice }}$</span>
+              <span [innerText]="varProp.propPrice + '$'"></span>
               <img
                 [src]="varProp.propImgUrl"
                 alt="prop-img"
-                style="height: 50px; width: 50px"
                 draggable="false"
+              />
+              <img
+                (click)="removeVariant(vrt.key, y)"
+                src="../../../assets/svgs/delete.svg"
+                alt="del-variant"
               />
             </div>
           </div>
         </div>
-
-        <!-- <label for="product-media">Variants: </label>
-      <input
-        type="file"
-        (change)="onFileChange($event)"
-        name="product-media"
-        id="product-media"
-        multiple
-        accept="video/*,image/*"
-      />
-      <button (click)="onSubmit($event)">Upload Media</button>
-      <div *ngFor="let media of currentProd.mediaList; index as i">
-        <ng-container *ngIf="media.mimetype.includes('image'); else elseBlock">
-          <img
-            [src]="media.filename"
-            alt="prod-media"
-            style="height: 100px; width: 100px"
-            draggable="true"
-            (drop)="dropMedia($event)"
-            (dragover)="allowDrag($event)"
-            (dragstart)="dragMedia($event)"
-            [id]="media._id"
-          />
-        </ng-container>
-        <ng-template #elseBlock>
-          <video
-            width="100"
-            height="100"
-            controls
-            draggable="true"
-            (drop)="dropMedia($event)"
-            (dragover)="allowDrag($event)"
-            (dragstart)="dragMedia($event)"
-            [id]="media._id"
-          >
-            <source [src]="media.filename" type="video/mp4" />
-          </video>
-        </ng-template>
-      </div>
-    </div> -->
       </div>
 
       <div class="prod-modal-layout">

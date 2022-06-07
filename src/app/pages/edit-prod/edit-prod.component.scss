@@ -1,3 +1,5 @@
+@import '../../../styles/colors';
+
 .edit-prod {
 
   main {
@@ -17,6 +19,17 @@
         flex-direction: column;
         flex: 1;
 
+        label {
+          font-weight: bold;
+          margin-top: 10px;
+
+          .add-variant-btn {
+            height: 20px;
+            width: 20px;
+            cursor: pointer;
+          }
+        }
+
         .variant-item-ct {
           display: flex;
           flex-wrap: wrap;
@@ -30,6 +43,18 @@
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
+
+            cursor: pointer;
+
+            &:hover {
+              background: $pink;
+              border-radius: 5px;
+            }
+
+            img {
+              width: 20px;
+              height: 20px;
+            }
           }
         }
       }
