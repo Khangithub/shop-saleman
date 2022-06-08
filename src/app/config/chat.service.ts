@@ -16,7 +16,7 @@ export class ChatService {
 
   async getChats(userId: string) {
     try {
-      let currentUserCookie = this.cookieService.get("token"); // To Get Cookie
+      let currentUserCookie = this.cookieService.get("salemanToken"); // To Get Cookie
 
       if (!currentUserCookie) {
         return this.route.navigate(["/login"]);
@@ -36,7 +36,7 @@ export class ChatService {
 
   async getMsgs(roomName: string) {
     try {
-      let currentUserCookie = this.cookieService.get("token"); // To Get Cookie
+      let currentUserCookie = this.cookieService.get("salemanToken"); // To Get Cookie
 
       if (!currentUserCookie) {
         return this.route.navigate(["/login"]);

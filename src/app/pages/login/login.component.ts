@@ -24,10 +24,10 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.isLogin = true;
-    this.api.loginWithPwd(this.email, this.pwd).subscribe(
+    this.api.lgPwd(this.email, this.pwd).subscribe(
       (userData) => {
         if (userData.token && userData.currentUser.role === "saler") {
-          this.cookieService.set("token", userData.token); // To Set Cookie
+          this.cookieService.set("salemanToken", userData.token); // To Set Cookie
           this.isLogin = false;
           this.route.navigate(["./"]);
         }

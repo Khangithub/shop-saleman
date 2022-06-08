@@ -3,6 +3,7 @@
   <main>
     <div class="prod-modal-ct">
       <div class="prod-modal-layout">
+        <label>Product Id: {{currentProd?._id}}</label>
         <label>Name: </label>
         <input
           class="form-control"
@@ -15,7 +16,7 @@
         <div
           class="prod-img-ct"
           [ngStyle]="{
-            'background-image': 'url(' + currentProd.productImage + ')'
+            'background-image': 'url(' + currentProd?.productImage + ')'
           }"
         >
           <app-media-modal (selectedImgUrl)="currentProd.productImage = $event">
@@ -68,7 +69,7 @@
           (closeModalEvent)="updateVariant($event)"
         ></app-variant-model>
 
-        <div *ngFor="let vrt of currentProd.variants | keyvalue; index as i">
+        <div *ngFor="let vrt of currentProd?.variants | keyvalue; index as i">
           <div class="variant-item-ct" [id]="vrt.key + '-' + i + '-variantCt'">
             <b [innerText]="vrt.key"></b>
             <div

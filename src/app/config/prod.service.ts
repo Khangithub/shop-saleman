@@ -44,7 +44,7 @@ export class ProdService {
       fd.append("shop-prod", files[i]);
     }
 
-    let currentUserCookie = this.cookieService.get("token"); // To Get Cookie
+    let currentUserCookie = this.cookieService.get("salemanToken"); // To Get Cookie
 
     if (!currentUserCookie) {
       return this.route.navigate(["/login"]);
@@ -59,7 +59,7 @@ export class ProdService {
 
   async uploadMedia(files: File[]) {
     try {
-      let currentUserCookie = this.cookieService.get("token"); // To Get Cookie
+      let currentUserCookie = this.cookieService.get("salemanToken"); // To Get Cookie
 
       if (!currentUserCookie) {
         return this.route.navigate(["/login"]);
@@ -84,7 +84,7 @@ export class ProdService {
 
   async editProd(prod: any) {
     try {
-      let currentUserCookie = this.cookieService.get("token"); // To Get Cookie
+      let currentUserCookie = this.cookieService.get("salemanToken"); // To Get Cookie
 
       if (!currentUserCookie) {
         return this.route.navigate(["/login"]);

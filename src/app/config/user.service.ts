@@ -17,7 +17,7 @@ export class UserService {
 
   async getCurrentUser() {
     try {
-      let currentUserCookie = this.cookieService.get("token"); // To Get Cookie
+      let currentUserCookie = this.cookieService.get("salemanToken"); // To Get Cookie
 
       if (!currentUserCookie) {
         return this.route.navigate(["/login"]);
@@ -36,7 +36,7 @@ export class UserService {
   }
 
   
-  loginWithPwd(email: string, pwd: string): Observable<any> {
+  lgPwd(email: string, pwd: string): Observable<any> {
     return this.http.post<any>(environment.LOGIN_PWD, {
       email,
       password: pwd,
