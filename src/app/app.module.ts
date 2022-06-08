@@ -14,6 +14,7 @@ import { VariantModelComponent } from "./components/variant-model/variant-model.
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ChatsComponent } from './pages/chats/chats.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { MediaModalComponent } from './components/media-modal/media-modal.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
     VariantModelComponent,
     ChatsComponent,
     SettingsComponent,
+    MediaModalComponent,
   ],
   imports: [
     BrowserModule,

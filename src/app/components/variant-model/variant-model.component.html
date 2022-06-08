@@ -36,50 +36,17 @@
         src="../../../assets/svgs/add.svg"
         alt="variant-img"
         class="add-variant-img-btn"
-        (click)="open(content)"
+        (click)="modalContent = !modalContent"
       />
+
+      <app-media-modal
+        [modalContent]="modalContent"
+        (closeModal)="modalContent = !$event"
+        (selectedImgUrl)="propImgUrl = $event"
+      ></app-media-modal>
     </label>
 
     <img *ngIf="propImgUrl" [src]="propImgUrl" alt="prop-img-url" />
-
-    <ng-template #content let-modal>
-      <div class="modal-header">
-        <h4 class="modal-title">Modal title</h4>
-        <button
-          type="button"
-          class="btn-close"
-          aria-label="Close"
-          (click)="modal.dismiss('Cross click')"
-        >
-          X
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="imgs-ct">
-          <img
-            *ngFor="let imgItem of imgs; index as i"
-            class="prop-img-item"
-            [src]="imgItem"
-            alt="user-img"
-            (click)="propImgUrl = imgItem; modal.dismiss()"
-          />
-        </div>
-
-        <form>
-          <input
-            type="file"
-            name="prod-img"
-            id="prod-img"
-            multiple
-            accept="image/*"
-            (change)="onFileChange($event)"
-          />
-          <button class="btn btn-primary" (click)="addVariantPropImg()">
-            Upload Images
-          </button>
-        </form>
-      </div>
-    </ng-template>
   </div>
 
   <button
