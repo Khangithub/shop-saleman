@@ -12,10 +12,16 @@
         />
 
         <label>Product Image: </label>
-        <div class="prod-img-ct">
-          <img [src]="currentProd.productImage" alt="prod-img" />
+        <div
+          class="prod-img-ct"
+          [ngStyle]="{
+            'background-image': 'url(' + currentProd.productImage + ')'
+          }"
+        >
           <div class="middle">
-            <div class="text">John Doe</div>
+            <app-media-modal
+              (selectedImgUrl)="currentProd.productImage = $event"
+            ></app-media-modal>
           </div>
         </div>
 
@@ -57,7 +63,7 @@
           [propName]="propName"
           [propPrice]="propPrice"
           [propImgUrl]="propImgUrl"
-          (closeModalEvent)="closeModal($event)"
+          (closeModalEvent)="updateVariant($event)"
         ></app-variant-model>
 
         <div *ngFor="let vrt of currentProd.variants | keyvalue; index as i">

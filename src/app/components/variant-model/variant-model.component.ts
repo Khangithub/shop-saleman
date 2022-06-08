@@ -6,15 +6,14 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
   styleUrls: ["./variant-model.component.scss"],
 })
 export class VariantModelComponent implements OnInit {
-  modalContent: boolean;
-
+  
   @Input() variantName: string;
   @Input() propName: string;
   @Input() propPrice: number;
   @Input() propImgUrl: string;
-
+  
   @Output() closeModalEvent = new EventEmitter();
-
+  
   constructor() {}
 
   async ngOnInit() {}

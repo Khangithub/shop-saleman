@@ -12,8 +12,7 @@ export class MediaModalComponent implements OnInit {
   imgs: string[] = [];
   selectedFiles = [];
 
-  @Input() modalContent: boolean;
-  @Output() closeModal = new EventEmitter<boolean>();
+  openMediaModal: boolean = false;
   @Output() selectedImgUrl = new EventEmitter<string>();
 
   constructor(
@@ -31,22 +30,12 @@ export class MediaModalComponent implements OnInit {
     }
   }
 
-  open(content: NgbModalRef) {
-    this._modalService
-      .open(content, {
-        ariaLabelledBy: "modal-basic-title",
-        size: "xl",
-        centered: true,
-      })
-      .result.then(
-        (data) => {
-          // on close
-        },
-        (error) => {
-          // on error/dismiss
-          this.closeModal.emit(true);
-        }
-      );
+  openModal(content: NgbModalRef) {
+    this._modalService.open(content, {
+      ariaLabelledBy: "modal-basic-title",
+      size: "xl",
+      centered: true,
+    }).result;
   }
 
   onFileChange(ev) {
@@ -61,7 +50,6 @@ export class MediaModalComponent implements OnInit {
   }
 
   selectImg(url: string) {
-    console.log("url ->", url);
     this.selectedImgUrl.emit(url);
   }
 }

@@ -17,7 +17,7 @@ export class EditProdComponent implements OnInit {
   propImgUrl: string = "";
 
   openVariantModal: boolean = false;
-  savingChange = false;
+  savingChange: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -87,7 +87,7 @@ export class EditProdComponent implements OnInit {
     }
   }
 
-  closeModal(data: any) {
+  updateVariant(data: any) {
     let { propImgUrl, propName, propPrice, variantName } = data;
 
     let varProp = {
