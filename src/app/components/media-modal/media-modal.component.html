@@ -1,4 +1,6 @@
-<button id="trigger-btn" (click)="openModal(content)">Choose Image</button>
+<button class="trigger-btn" (click)="openModal(content)">
+  <ng-content></ng-content>
+</button>
 <ng-template #content let-modal>
   <div class="modal-header">
     <h4 class="modal-title"></h4>

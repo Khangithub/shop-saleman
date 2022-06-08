@@ -32,9 +32,13 @@
   <div class="variant-prop-img-ct">
     <label>
       Variant Image:
-      <app-media-modal
-        (selectedImgUrl)="propImgUrl = $event"
-      ></app-media-modal>
+      <app-media-modal (selectedImgUrl)="propImgUrl = $event">
+        <img
+          src="../../../assets/svgs/add.svg"
+          alt="variant-img"
+          class="add-variant-img-btn"
+        />
+      </app-media-modal>
     </label>
 
     <img *ngIf="propImgUrl" [src]="propImgUrl" alt="prop-img-url" />

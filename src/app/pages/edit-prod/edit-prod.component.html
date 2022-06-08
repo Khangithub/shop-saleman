@@ -18,11 +18,13 @@
             'background-image': 'url(' + currentProd.productImage + ')'
           }"
         >
-          <div class="middle">
-            <app-media-modal
-              (selectedImgUrl)="currentProd.productImage = $event"
-            ></app-media-modal>
-          </div>
+          <app-media-modal (selectedImgUrl)="currentProd.productImage = $event">
+            <img
+              src="../../../assets/svgs/edit.svg"
+              alt="edit-prod"
+              class="middle"
+            />
+          </app-media-modal>
         </div>
 
         <label>Price: </label>
