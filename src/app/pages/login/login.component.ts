@@ -1,7 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { Store } from "@ngrx/store";
 import { CookieService } from "ngx-cookie-service";
-import { UserService } from "../../config/user.service";
+import { AppState } from "src/store";
+import { lgPwd } from "src/store/actions/user.actions";
+import { UserService } from "../../services/auth.service";
 
 @Component({
   selector: "app-login",
@@ -17,26 +20,15 @@ export class LoginComponent implements OnInit {
   constructor(
     private api: UserService,
     private route: Router,
-    private cookieService: CookieService
+    private cookie_service: CookieService,
+    private store: Store<AppState>
   ) {}
 
   ngOnInit(): void {}
 
   login() {
     this.isLogin = true;
-    this.api.lgPwd(this.email, this.pwd).subscribe(
-      (userData) => {
-        if (userData.token && userData.currentUser.role === "saler") {
-          this.cookieService.set("salemanToken", userData.token); // To Set Cookie
-          this.isLogin = false;
-          this.route.navigate(["./"]);
-        }
-      },
-      (err) => {
-        this.isLogin = false;
-        console.log("err", err);
-      }
-    );
+    this.store.dispatch(lgPwd({ email: this.email, password: this.pwd }));
   }
 
   togglePwd() {

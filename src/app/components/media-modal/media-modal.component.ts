@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
-import { UserService } from "src/app/config/user.service";
-import { ProdService } from "src/app/config/prod.service";
+import { UserService } from "src/app/services/auth.service";
+import { ProdService } from "src/app/services/product.service";
 
 @Component({
   selector: "app-media-modal",
@@ -17,12 +17,12 @@ export class MediaModalComponent implements OnInit {
 
   constructor(
     private _modalService: NgbModal,
-    private _userService: UserService,
-    private _prodService: ProdService
+    private user_service: UserService,
+    private product_service: ProdService
   ) {}
 
   async ngOnInit() {
-    let user = await this._userService.getCurrentUser();
+    let user = await this.user_service.getCurrentUser();
 
     for (let i = 0; i < user.mediaList.length; i++) {
       const element = user.mediaList[i];
@@ -43,7 +43,7 @@ export class MediaModalComponent implements OnInit {
   }
 
   async addVariantPropImg() {
-    const newImgs: any = await this._prodService.uploadMedia(
+    const newImgs: any = await this.product_service.uploadMedia(
       this.selectedFiles
     );
     this.imgs.push(newImgs.map((img: any) => img.filename));

@@ -1,6 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { ProdService } from "src/app/config/prod.service";
-import { UserService } from 'src/app/config/user.service';
+import { Store } from "@ngrx/store";
+import { ProdService } from "src/app/services/product.service";
+import { UserService } from 'src/app/services/auth.service';
+import { AppState } from "src/store";
+import { User } from "src/app/model/user.model";
+import { Product } from "src/app/model/product.model";
 
 @Component({
   selector: "app-home",
@@ -8,13 +12,13 @@ import { UserService } from 'src/app/config/user.service';
   styleUrls: ["./home.component.scss"],
 })
 export class HomeComponent implements OnInit {
-  currentUser: any;
-  prods: any;
+  currentUser: User;
+  prods: Product[];
 
-  constructor(private _prodService: ProdService, private _userService: UserService) {}
+  constructor(private product_service: ProdService, private user_service: UserService, private store:Store<AppState>) {}
 
   async ngOnInit() {
-    this.currentUser = await this._userService.getCurrentUser();
-    this.prods = await this._prodService.getProdsBySaleman(this.currentUser._id, 1, 6);
+    this.currentUser = await this.user_service.getCurrentUser();
+    this.prods = await this.product_service.getProdsBySaleman(this.currentUser._id, 1, 6);
   }
 }

@@ -15,6 +15,10 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ChatsComponent } from './pages/chats/chats.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { MediaModalComponent } from './components/media-modal/media-modal.component';
+import { EffectsModule } from "@ngrx/effects";
+import { StoreModule } from "@ngrx/store";
+import { UserEffect } from "src/store/effects/user.effects";
+import { userReducer } from "src/store/reducers/user.reducers";
 
 @NgModule({
   declarations: [
@@ -36,6 +40,8 @@ import { MediaModalComponent } from './components/media-modal/media-modal.compon
     HttpClientModule,
     AppRoutingModule,
     NgbModule,
+    EffectsModule.forRoot([UserEffect]),
+    StoreModule.forRoot({ user: userReducer }),
   ],
   providers: [],
   bootstrap: [AppComponent],

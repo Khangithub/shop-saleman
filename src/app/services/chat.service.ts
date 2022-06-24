@@ -10,13 +10,13 @@ import { Router } from "@angular/router";
 export class ChatService {
   constructor(
     private http: HttpClient,
-    private cookieService: CookieService,
+    private cookie_service: CookieService,
     private route: Router
   ) {}
 
   async getChats(userId: string) {
     try {
-      let currentUserCookie = this.cookieService.get("salemanToken"); // To Get Cookie
+      let currentUserCookie = this.cookie_service.get("salemanToken"); // To Get Cookie
 
       if (!currentUserCookie) {
         return this.route.navigate(["/login"]);
@@ -36,7 +36,7 @@ export class ChatService {
 
   async getMsgs(roomName: string) {
     try {
-      let currentUserCookie = this.cookieService.get("salemanToken"); // To Get Cookie
+      let currentUserCookie = this.cookie_service.get("salemanToken"); // To Get Cookie
 
       if (!currentUserCookie) {
         return this.route.navigate(["/login"]);

@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { ProdService } from "src/app/config/prod.service";
+import { ProdService } from "src/app/services/product.service";
 
 @Component({
   selector: "app-edit-prod",
@@ -21,12 +21,12 @@ export class EditProdComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private _prodService: ProdService
+    private product_service: ProdService
   ) {}
 
   async ngOnInit() {
     let prodId = this.route.snapshot.paramMap.get("prodId");
-    this.currentProd = await this._prodService.getProd(prodId);
+    this.currentProd = await this.product_service.getProd(prodId);
   }
 
   allowDrag(e: DragEvent): void {
@@ -75,7 +75,7 @@ export class EditProdComponent implements OnInit {
   }
 
   async onSubmit() {
-    const res: any = await this._prodService.uploadProdMedia(
+    const res: any = await this.product_service.uploadProdMedia(
       this.selectedFiles,
       this.currentProd._id
     );
@@ -115,7 +115,7 @@ export class EditProdComponent implements OnInit {
 
   async editProd() {
     this.savingChange = true;
-    const res: any = await this._prodService.editProd(this.currentProd);
+    const res: any = await this.product_service.editProd(this.currentProd);
     if (res.updated) {
       this.savingChange = false;
     }

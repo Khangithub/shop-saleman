@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { UserService } from "src/app/config/user.service";
-import { SocketService } from "src/app/config/socket.service";
-import { ChatService } from "src/app/config/chat.service";
+import { UserService } from "src/app/services/auth.service";
+import { SocketService } from "src/app/services/socket.service";
+import { ChatService } from "src/app/services/chat.service";
 import TimeUtil from "src/app/utils/timeUtil.js";
 
 @Component({
@@ -21,7 +21,7 @@ export class ChatsComponent implements OnInit {
 
   constructor(
     private _socketService: SocketService,
-    private _userService: UserService,
+    private user_service: UserService,
     private _chatService: ChatService
   ) {
     this._socketService
@@ -97,7 +97,7 @@ export class ChatsComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.currentUser = await this._userService.getCurrentUser();
+    this.currentUser = await this.user_service.getCurrentUser();
     this.chats = await this._chatService.getChats(this.currentUser._id);
     this.msgs = await this._chatService.getMsgs(this.chats[0].room);
     this.selectedProd = this.chats[0].product;
