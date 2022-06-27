@@ -12,13 +12,14 @@ import { EditProdComponent } from "./pages/edit-prod/edit-prod.component";
 import { NotfoundComponent } from "./pages/notfound/notfound.component";
 import { VariantModelComponent } from "./components/variant-model/variant-model.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { ChatsComponent } from './pages/chats/chats.component';
-import { SettingsComponent } from './pages/settings/settings.component';
-import { MediaModalComponent } from './components/media-modal/media-modal.component';
+import { ChatsComponent } from "./pages/chats/chats.component";
+import { SettingsComponent } from "./pages/settings/settings.component";
+import { MediaModalComponent } from "./components/media-modal/media-modal.component";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
-import { UserEffect } from "src/store/effects/user.effects";
-import { userReducer } from "src/store/reducers/user.reducers";
+import { UserEffect } from "src/app/store/effects/user.effects";
+import { userReducer } from "src/app/store/reducers/user.reducers";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 
 @NgModule({
   declarations: [
@@ -42,6 +43,9 @@ import { userReducer } from "src/store/reducers/user.reducers";
     NgbModule,
     EffectsModule.forRoot([UserEffect]),
     StoreModule.forRoot({ user: userReducer }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

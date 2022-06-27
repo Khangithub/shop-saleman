@@ -1,9 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { Store } from "@ngrx/store";
+import { select, Store } from "@ngrx/store";
 import { CookieService } from "ngx-cookie-service";
-import { AppState } from "src/store";
-import { lgPwd } from "src/store/actions/user.actions";
+import { AppState } from "src/app/store";
+import { lgPwd } from "src/app/store/actions/user.actions";
+import { selectCurrentUser } from "src/app/store/selectors/user.selectors";
 import { UserService } from "../../services/auth.service";
 
 @Component({
@@ -11,20 +12,26 @@ import { UserService } from "../../services/auth.service";
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.scss"],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   email: string = "";
   pwd: string = "";
   isLogin: boolean = false;
   visiblePwd: boolean = false;
 
-  constructor(
-    private api: UserService,
-    private route: Router,
-    private cookie_service: CookieService,
-    private store: Store<AppState>
-  ) {}
 
-  ngOnInit(): void {}
+  constructor(
+    private route: Router,
+    private store: Store<AppState>
+  ) { }
+
+  ngOnInit(): void {
+    // const obs = this.store.pipe(select(selectCurrentUser));
+    // console.log('obs', obs)
+  }
+
+  ngOnDestroy(): void {
+    // this.userSubscription$.unsubscribe();
+  }
 
   login() {
     this.isLogin = true;

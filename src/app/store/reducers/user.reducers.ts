@@ -1,9 +1,10 @@
 import { createReducer, on } from "@ngrx/store";
-import { lgSuc } from "../actions/user.actions";
+import { authFailed, lgSuc } from "../actions/user.actions";
 
 const initialState = {
   currentUser: null,
   token: "",
+  authError: null,
 };
 
 export const userReducer = createReducer(
@@ -12,5 +13,9 @@ export const userReducer = createReducer(
     ...state,
     currentUser,
     token,
-  }))
+  })),
+
+  on(authFailed, (state, { errorMessage }) => (
+    { ...state, authError: errorMessage }
+  ))
 );

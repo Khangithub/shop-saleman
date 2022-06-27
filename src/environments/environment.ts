@@ -11,4 +11,5 @@ export const environment = {
     "https://shopeeholic-server.herokuapp.com/products/saleman/prod/media/",
   UPLOAD_USER_MEDIA: "https://shopeeholic-server.herokuapp.com/users/media",
   EDIT_PROD: "https://shopeeholic-server.herokuapp.com/products/edit",
+  TOKEN_NAME: 'SALEMAN_TOKEN'
 };

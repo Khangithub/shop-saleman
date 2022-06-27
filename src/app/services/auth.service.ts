@@ -13,7 +13,7 @@ export class UserService {
     private http: HttpClient,
     private cookie_service: CookieService,
     private route: Router
-  ) {}
+  ) { }
 
   async getCurrentUser() {
     try {
@@ -43,10 +43,10 @@ export class UserService {
           password: pwd,
         })
         .toPromise();
-      return loginData;
+     
+       return loginData;
     } catch (error) {
-      console.log("[USER] login failed", error);
-      return error;
+      return error
     }
   }
 }
