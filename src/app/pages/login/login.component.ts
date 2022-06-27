@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private store: Store<AppState>,
     private message: NzMessageService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.store.select(selectUserStore).subscribe(({ authError }) => {
