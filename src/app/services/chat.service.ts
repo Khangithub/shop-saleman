@@ -3,6 +3,7 @@ import { CookieService } from "ngx-cookie-service";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
+import { lastValueFrom } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -12,7 +13,7 @@ export class ChatService {
     private http: HttpClient,
     private cookie_service: CookieService,
     private route: Router
-  ) {}
+  ) { }
 
   async getChats(userId: string) {
     try {
@@ -24,9 +25,8 @@ export class ChatService {
 
       const headers = { Authorization: "Bearer " + currentUserCookie };
 
-      const chatReq: any = await this.http
-        .get(environment.GET_CHATS + userId, { headers })
-        .toPromise();
+      const chatReq: any = await lastValueFrom(this.http
+        .get(environment.GET_CHATS + userId, { headers }))
 
       return chatReq.chats;
     } catch (err) {
@@ -44,9 +44,8 @@ export class ChatService {
 
       const headers = { Authorization: "Bearer " + currentUserCookie };
 
-      const msgsReq: any = await this.http
-        .get(environment.GET_MSGS + roomName, { headers })
-        .toPromise();
+      const msgsReq: any = await lastValueFrom(this.http
+        .get(environment.GET_MSGS + roomName, { headers }))
 
       return msgsReq.msgs;
     } catch (err) {

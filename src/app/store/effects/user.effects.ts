@@ -1,7 +1,7 @@
 import { Actions, ofType, createEffect } from "@ngrx/effects";
 import { Injectable } from "@angular/core";
 import { UserService } from "src/app/services/auth.service";
-import { authFailed, getCurrentUser, loginWithEmailNPassword, lgSuc, saveToken } from "../actions/user.actions";
+import { authFailed, getCurrentUser, loginWithEmailNPassword, lgSuc, saveToken, getCurrentUserSuccess } from "../actions/user.actions";
 import { catchError, map, switchMap, tap } from "rxjs/operators";
 import { from, of } from "rxjs";
 import { Router } from "@angular/router";
@@ -35,19 +35,7 @@ export class UserEffect {
         )
       ),
     )
-  );
-
-  // getCurrentUser$ = createEffect(() =>
-  //   this.action.pipe(
-  //     ofType(getCurrentUser),
-  //     switchMap(() =>
-  //       from(this.user_service.getCurrentUser()).pipe(
-  //         map(data => {
-  //           console.log('data', data);
-  //           return data;
-  //         }),
-  //         catchError(error => error)
-  //       ))))
+  )
 
   redirectLoginSuccess$ = createEffect(() =>
     this.action.pipe(
@@ -60,4 +48,21 @@ export class UserEffect {
       ofType(saveToken),
       tap(({ token }) => this.cookie_service.set(environment.TOKEN_NAME, token))
     ), { dispatch: false })
+
+  getCurrentUser$ = createEffect(() =>
+    this.action.pipe(
+      ofType(getCurrentUser),
+      switchMap(() =>
+        from(this.user_service.getCurrentUser()).pipe(
+          switchMap(
+            (data => {
+              if (data.hasOwnProperty('currentUser')) {
+                return [getCurrentUserSuccess({ currentUser: data.currentUser })]
+              } else {
+                throw data;
+              }
+            }),
+          ),
+          catchError(({ error }) => of(authFailed({ errorMessage: error.message })))
+        ))))
 }

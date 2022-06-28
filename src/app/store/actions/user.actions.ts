@@ -6,6 +6,7 @@ export const Types = {
   LOGIN_SUC: "[USER] login successfully",
   SAVE_TOKEN: "[USER] save token",
   GET_CURRENT_USER: "[USER] get current user",
+  GET_CURRENT_USER_SUCCESS: "[USER] get current user success",
   LOGIN_FAILED: "[USER] login failed",
 };
 
@@ -20,6 +21,8 @@ export const saveToken = createAction(
   Types.SAVE_TOKEN,
   props<{ token: string }>()
 )
+
+export const getCurrentUserSuccess = createAction(Types.GET_CURRENT_USER_SUCCESS, props<{ currentUser: User }>())
 
 export const lgSuc = createAction(
   Types.LOGIN_SUC,

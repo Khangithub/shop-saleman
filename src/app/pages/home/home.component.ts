@@ -5,6 +5,7 @@ import { UserService } from 'src/app/services/auth.service';
 import { AppState } from "src/app/store";
 import { User } from "src/app/model/user.model";
 import { Product } from "src/app/model/product.model";
+import { getCurrentUser } from "src/app/store/actions/user.actions";
 
 @Component({
   selector: "app-home",
@@ -15,7 +16,8 @@ export class HomeComponent implements OnInit {
   currentUser: User;
   prods: Product[];
 
-  constructor(private product_service: ProdService, private user_service: UserService, private store:Store<AppState>) {}
+  constructor(private product_service: ProdService, private user_service: UserService, private store:Store<AppState>) {
+  }
 
   async ngOnInit() {
     // this.currentUser = await this.user_service.getCurrentUser();

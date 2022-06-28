@@ -4,6 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { User } from "../model/user.model";
 import { environment } from "src/environments/environment";
+import { lastValueFrom } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -27,11 +28,8 @@ export class UserService {
 
       const headers = { Authorization: "Bearer " + this.currentCookie };
 
-      const userData = <{ currentUser: User }>await this.http
-        .get(environment.GET_CURRENT_USER, { headers })
-        .toPromise();
-
-      return userData.currentUser;
+      return <{ currentUser: User }>await lastValueFrom(this.http
+        .get(environment.GET_CURRENT_USER, { headers }));
     } catch (error) {
       return error;
     }
@@ -39,12 +37,11 @@ export class UserService {
 
   async loginWithEmailNPassword(email: string, pwd: string) {
     try {
-      const loginData = <{ currentUser: User; token: string }>await this.http
+      const loginData = <{ currentUser: User; token: string }>await lastValueFrom(this.http
         .post<any>(environment.LOGIN_PWD, {
           email,
           password: pwd,
-        })
-        .toPromise();
+        }))
 
       return loginData;
     } catch (error) {

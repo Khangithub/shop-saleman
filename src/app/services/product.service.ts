@@ -3,6 +3,7 @@ import { environment } from "../../environments/environment";
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { CookieService } from "ngx-cookie-service";
+import { lastValueFrom } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -12,14 +13,13 @@ export class ProdService {
     private http: HttpClient,
     private cookie_service: CookieService,
     private route: Router
-  ) {}
+  ) { }
 
   async getProdsBySaleman(userId: string, pageIndex: number, limit: number) {
     try {
-      const prodsReq: any = await this.http
+      const prodsReq: any = await lastValueFrom(this.http
         .get(environment.GET_PRODUCTS + userId + "/" + pageIndex + "/" + limit)
-        .toPromise();
-
+      )
       return prodsReq.docs;
     } catch (err) {
       console.log("err", err);
@@ -28,10 +28,9 @@ export class ProdService {
 
   async getProd(prodId) {
     try {
-      const prodReq = await this.http
+      const prodReq = await lastValueFrom(this.http
         .get(environment.GET_PRODUCT + prodId)
-        .toPromise();
-
+      )
       return prodReq;
     } catch (err) {
       console.log("err", err);
@@ -52,9 +51,8 @@ export class ProdService {
 
     const headers = { Authorization: "Bearer " + currentUserCookie };
 
-    return this.http
-      .patch(environment.UPLOAD_PRODUCT_MEDIA + prodId, fd, { headers })
-      .toPromise();
+    return await lastValueFrom(this.http
+      .patch(environment.UPLOAD_PRODUCT_MEDIA + prodId, fd, { headers }))
   }
 
   async uploadMedia(files: File[]) {
@@ -72,9 +70,8 @@ export class ProdService {
 
       const headers = { Authorization: "Bearer " + currentUserCookie };
 
-      const data: any = await this.http
-        .post(environment.UPLOAD_USER_MEDIA, fd, { headers })
-        .toPromise();
+      const data: any = await lastValueFrom(this.http
+        .post(environment.UPLOAD_USER_MEDIA, fd, { headers }))
 
       return data.mediaList;
     } catch (err) {
@@ -91,9 +88,8 @@ export class ProdService {
       }
       const headers = { Authorization: "Bearer " + currentUserCookie };
 
-      const prodsReq: any = await this.http
-        .patch(environment.EDIT_PROD, { prod }, { headers })
-        .toPromise();
+      const prodsReq: any = await lastValueFrom(this.http
+        .patch(environment.EDIT_PROD, { prod }, { headers }))
 
       return prodsReq;
     } catch (err) {
