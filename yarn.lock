@@ -125,6 +125,15 @@
   dependencies:
     tslib "^2.3.0"
 
+"@angular/cdk@^13.0.1":
+  version "13.3.9"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-13.3.9.tgz#a177196e872e29be3f84d3a50f778d361c689ff7"
+  integrity sha512-XCuCbeuxWFyo3EYrgEYx7eHzwl76vaWcxtWXl00ka8d+WAOtMQ6Tf1D98ybYT5uwF9889fFpXAPw98mVnlo3MA==
+  dependencies:
+    tslib "^2.3.0"
+  optionalDependencies:
+    parse5 "^5.0.0"
+
 "@angular/cli@^14.0.3":
   version "14.0.3"
   resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-14.0.3.tgz#700709837c3eb2aad872440d6667341cd2969ee5"
@@ -234,6 +243,21 @@
   integrity sha512-5UhtBhKNBxsjojMGeYOj/tu52AZqcSmNpJptT0A4WCTnOOLqN8IVgy3NgE6RiPPdfSfGJCMvaRVVbGbWPXhePA==
   dependencies:
     tslib "^2.3.0"
+
+"@ant-design/colors@^5.0.0":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@ant-design/colors/-/colors-5.1.1.tgz#800b2186b1e27e66432e67d03ed96af3e21d8940"
+  integrity sha512-Txy4KpHrp3q4XZdfgOBqLl+lkQIc3tEvHXOimRN1giX1AEC7mGtyrO9p8iRGJ3FLuVMGa2gNEzQyghVymLttKQ==
+  dependencies:
+    "@ctrl/tinycolor" "^3.3.1"
+
+"@ant-design/icons-angular@^13.0.1":
+  version "13.1.0"
+  resolved "https://registry.yarnpkg.com/@ant-design/icons-angular/-/icons-angular-13.1.0.tgz#6ff472ae880f911bf3a04f19b2f9b5ef5d096a90"
+  integrity sha512-bQ1pxiDmR8Hx7kUwQImxLGAtexv0uDCCMlKSWdyaw39TnNAPz+Hls0XL+UqVIjHgt/D4R8tkmSMpx3eBGFIY/Q==
+  dependencies:
+    "@ant-design/colors" "^5.0.0"
+    tslib "^2.0.0"
 
 "@assemblyscript/loader@^0.10.1":
   version "0.10.1"
@@ -1312,6 +1336,11 @@
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@csstools/selector-specificity/-/selector-specificity-2.0.1.tgz#b6b8d81780b9a9f6459f4bfe9226ac6aefaefe87"
   integrity sha512-aG20vknL4/YjQF9BSV7ts4EWm/yrjagAN7OWBNmlbEOUiu0llj4OGrFoOKK3g2vey4/p2omKCoHrWtPxSwV3HA==
+
+"@ctrl/tinycolor@^3.3.1":
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/@ctrl/tinycolor/-/tinycolor-3.4.1.tgz#75b4c27948c81e88ccd3a8902047bcd797f38d32"
+  integrity sha512-ej5oVy6lykXsvieQtqZxCOaLT+xD4+QNarq78cIYISHmZXshCvROLudpQN3lfL8G0NL7plMSSK+zlyvCaIJ4Iw==
 
 "@discoveryjs/json-ext@0.5.7":
   version "0.5.7"
@@ -2960,6 +2989,11 @@ dashdash@^1.12.0:
   integrity sha512-jRFi8UDGo6j+odZiEpjazZaWqEal3w/basFjQHQEwVtZJGDpxbH1MeYluwCS8Xq5wmLJooDlMgvVarmWfGM44g==
   dependencies:
     assert-plus "^1.0.0"
+
+date-fns@^2.16.1:
+  version "2.28.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.28.0.tgz#9570d656f5fc13143e50c975a3b6bbeb46cd08b2"
+  integrity sha512-8d35hViGYx/QH0icHYCeLmsLmMUheMmTyV9Fcm6gvNwdw31yXXH+O85sOBJ+OLnLQMKZowvpKb6FgMIQjcpvQw==
 
 date-format@^4.0.10:
   version "4.0.11"
@@ -5044,6 +5078,16 @@ neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
+ng-zorro-antd@^13.3.2:
+  version "13.3.2"
+  resolved "https://registry.yarnpkg.com/ng-zorro-antd/-/ng-zorro-antd-13.3.2.tgz#04d79f884231afdfdb5759919c0fa202f431cc8f"
+  integrity sha512-bmpolaSevoZSVlP2nVpvi/CrFFu7hdaK/vz1k0R84db4AYOYFHcRwlAUBaWVKjWGaCHek+k1atC/pckXZqEgIA==
+  dependencies:
+    "@angular/cdk" "^13.0.1"
+    "@ant-design/icons-angular" "^13.0.1"
+    date-fns "^2.16.1"
+    tslib "^2.3.0"
+
 ngx-cookie-service@^14.0.0:
   version "14.0.0"
   resolved "https://registry.yarnpkg.com/ngx-cookie-service/-/ngx-cookie-service-14.0.0.tgz#c10735af0b646c52d09fa7e71ed788d8043aba35"
@@ -5428,6 +5472,11 @@ parse5-sax-parser@^6.0.1:
   integrity sha512-kXX+5S81lgESA0LsDuGjAlBybImAChYRMT+/uKCEXFBFOeEhS52qUCydGhU3qLRD8D9DVjaUo821WK7DM4iCeg==
   dependencies:
     parse5 "^6.0.1"
+
+parse5@^5.0.0:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/parse5/-/parse5-5.1.1.tgz#f68e4e5ba1852ac2cadc00f4555fff6c2abb6178"
+  integrity sha512-ugq4DFI0Ptb+WWjAdOK16+u/nHfiIrcE+sh8kZMaM0WllQKLI9rOUq6c2b7cwPkXdzfQESqvoqK6ug7U/Yyzug==
 
 parse5@^6.0.1:
   version "6.0.1"

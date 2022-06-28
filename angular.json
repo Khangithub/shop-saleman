@@ -24,6 +24,7 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "src/styles/index.scss",
               "src/styles/_colors.scss",
               "src/styles/_layout.scss",
