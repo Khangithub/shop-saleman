@@ -1,6 +1,9 @@
 import { UserService } from "src/app/services/auth.service";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { Store } from "@ngrx/store";
+import { AppState } from "src/app/store";
+import { getCurrentUser } from "src/app/store/actions/user.actions";
 
 @Component({
   selector: "app-navbar",
@@ -8,10 +11,12 @@ import { Router } from "@angular/router";
   styleUrls: ["./navbar.component.scss"],
 })
 export class NavbarComponent implements OnInit {
-  currentUser;
-  constructor(private route: Router, private api: UserService) {}
+  constructor(private route: Router,
+    private store: Store<AppState>,
+    private user_service: UserService) {
+    this.store.dispatch(getCurrentUser())
+  }
 
   async ngOnInit() {
-    this.currentUser = await this.api.getCurrentUser();
   }
 }

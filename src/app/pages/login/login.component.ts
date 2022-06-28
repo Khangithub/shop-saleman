@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 import { select, Store } from "@ngrx/store";
 import { CookieService } from "ngx-cookie-service";
 import { AppState } from "src/app/store";
-import { lgPwd } from "src/app/store/actions/user.actions";
+import { loginWithEmailNPassword } from "src/app/store/actions/user.actions";
 import { selectCurrentUser } from "src/app/store/selectors/user.selectors";
 import { UserService } from "../../services/auth.service";
 
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   login() {
     this.isLogin = true;
-    this.store.dispatch(lgPwd({ email: this.email, password: this.pwd }));
+    this.store.dispatch(loginWithEmailNPassword({ email: this.email, password: this.pwd }));
   }
 
   togglePwd() {

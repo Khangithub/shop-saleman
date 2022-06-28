@@ -1,8 +1,8 @@
-import { Actions, ofType, createEffect, Effect } from "@ngrx/effects";
+import { Actions, ofType, createEffect } from "@ngrx/effects";
 import { Injectable } from "@angular/core";
 import { UserService } from "src/app/services/auth.service";
-import { authFailed, lgPwd, lgSuc, saveToken } from "../actions/user.actions";
-import { catchError, switchMap, tap } from "rxjs/operators";
+import { authFailed, getCurrentUser, loginWithEmailNPassword, lgSuc, saveToken } from "../actions/user.actions";
+import { catchError, map, switchMap, tap } from "rxjs/operators";
 import { from, of } from "rxjs";
 import { Router } from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
@@ -17,11 +17,11 @@ export class UserEffect {
     private cookie_service: CookieService,
   ) { }
 
-  lgPwdCall$ = createEffect(() =>
+  loginWithEmailNPassword$ = createEffect(() =>
     this.action.pipe(
-      ofType(lgPwd),
+      ofType(loginWithEmailNPassword),
       switchMap(({ email, password }) =>
-        from(this.user_service.lgPwd(email, password)).pipe(
+        from(this.user_service.loginWithEmailNPassword(email, password)).pipe(
           switchMap(
             (data => {
               if (data.hasOwnProperty('currentUser') && data.hasOwnProperty('token')) {
@@ -37,21 +37,27 @@ export class UserEffect {
     )
   );
 
-  redirectLoginSuccess$ = createEffect(() => {
-    return this.action.pipe(
-      ofType(lgSuc),
-      tap((_) => {
-        this.router.navigate(['/'])
-      })
-    )
-  }, { dispatch: false })
+  // getCurrentUser$ = createEffect(() =>
+  //   this.action.pipe(
+  //     ofType(getCurrentUser),
+  //     switchMap(() =>
+  //       from(this.user_service.getCurrentUser()).pipe(
+  //         map(data => {
+  //           console.log('data', data);
+  //           return data;
+  //         }),
+  //         catchError(error => error)
+  //       ))))
 
-  saveToken$ = createEffect(() => {
-    return this.action.pipe(
+  redirectLoginSuccess$ = createEffect(() =>
+    this.action.pipe(
+      ofType(lgSuc),
+      tap((_) => this.router.navigate(['/']))
+    ), { dispatch: false })
+
+  saveToken$ = createEffect(() =>
+    this.action.pipe(
       ofType(saveToken),
-      tap(({ token }) => {
-        this.cookie_service.set(environment.TOKEN_NAME, token)
-      })
-    )
-  }, { dispatch: false })
+      tap(({ token }) => this.cookie_service.set(environment.TOKEN_NAME, token))
+    ), { dispatch: false })
 }
