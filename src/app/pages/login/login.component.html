@@ -1,46 +1,32 @@
 <div class="login">
   <div class="login-ct">
-    <h1>Login to sale the world</h1>
+    <h2 nz-typography>Login</h2>
 
     <div class="login-form">
-      <input
-        type="text"
-        name="email"
-        placeholder="Email"
-        autoComplete="email"
-        [value]="email"
-        (change)="email = $event.target.value"
-      />
-      <input
-        [type]="visiblePwd ? 'text' : 'password'"
-        name="password"
-        placeholder="Password"
-        [value]="pwd"
-        (change)="pwd = $event.target.value"
-      />
+      <input type="text" nz-input name="email" placeholder="Email" nzSize="large" autoComplete="email" [value]="email"
+        (change)="email = $event.target.value" />
 
-      <img
-        class="visible-pwd-btn"
-        [src]="
-          visiblePwd
-            ? '../../../assets/svgs/eye.svg'
-            : '../../../assets/svgs/eye-crossed.svg'
-        "
-        alt=""
-        (click)="togglePwd()"
-      />
+      <nz-input-group [nzSuffix]="suffixTemplate">
+        <input [type]="passwordVisible ? 'text' : 'password'" nz-input placeholder="Password" [value]="password"
+          (change)="password = $event.target.value" />
+      </nz-input-group>
+      <ng-template #suffixTemplate>
+        <img [src]="passwordVisible ? '../../../assets/svgs/eye.svg' : '../../../assets/svgs/eye-crossed.svg' "
+          style="height: 17px; width: 17px;" alt="show password icon" (click)="passwordVisible = !passwordVisible">
+      </ng-template>
 
-      <button type="submit" [disabled]="isLogin" class="login-btn" (click)="login()">Login</button>
+      <button nz-button nzType="primary" type="submit" class="login-btn" (click)="login()">Login</button>
     </div>
 
+
     <div class="gg-login-ct">
-      <h4>
-        <b>Or</b>
-      </h4>
-      <button>
-        <img src="../../../assets/svgs/google.svg" alt="google" />
-        Continue with Google
+      <h5 nz-typography>OR</h5>
+      <button nz-button nzType="default">
+        <img src="../../../assets/svgs/google.svg" alt="google"
+          style="width: 25px; height: 25px; margin-right: 10px;" />
+        <span>Continue with Google</span>
       </button>
+
     </div>
 
     <div class="login-term-container">
@@ -48,10 +34,9 @@
         <span>By continuing with Shopeeholic, you agreed with </span>
         <span>Terms of Service, Privacy Policy</span>
       </div>
-
+      <nz-divider></nz-divider>
       <p>Not on Shopeeholic yet? Sign up</p>
     </div>
 
-    <button nz-button nzType="primary">Primary</button>
   </div>
 </div>

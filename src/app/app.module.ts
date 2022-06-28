@@ -20,6 +20,10 @@ import { UserEffect } from "src/app/store/effects/user.effects";
 import { userReducer } from "src/app/store/reducers/user.reducers";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @NgModule({
   declarations: [
@@ -41,6 +45,10 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     HttpClientModule,
     AppRoutingModule,
     NzButtonModule,
+    NzInputModule,
+    NzTypographyModule,
+    NzDividerModule,
+    NzIconModule,
     EffectsModule.forRoot([UserEffect]),
     StoreModule.forRoot({ user: userReducer }),
     StoreDevtoolsModule.instrument({
@@ -50,4 +58,4 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
