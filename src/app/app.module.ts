@@ -11,7 +11,6 @@ import { ProdListComponent } from "./components/prod-list/prod-list.component";
 import { EditProdComponent } from "./pages/edit-prod/edit-prod.component";
 import { NotfoundComponent } from "./pages/notfound/notfound.component";
 import { VariantModelComponent } from "./components/variant-model/variant-model.component";
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ChatsComponent } from "./pages/chats/chats.component";
 import { SettingsComponent } from "./pages/settings/settings.component";
 import { MediaModalComponent } from "./components/media-modal/media-modal.component";
@@ -40,7 +39,6 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools";
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    NgbModule,
     EffectsModule.forRoot([UserEffect]),
     StoreModule.forRoot({ user: userReducer }),
     StoreDevtoolsModule.instrument({

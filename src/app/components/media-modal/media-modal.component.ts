@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
+// import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { UserService } from "src/app/services/auth.service";
 import { ProdService } from "src/app/services/product.service";
 
@@ -16,7 +16,7 @@ export class MediaModalComponent implements OnInit {
   @Output() selectedImgUrl = new EventEmitter<string>();
 
   constructor(
-    private _modalService: NgbModal,
+    // private _modalService: NgbModal,
     private user_service: UserService,
     private product_service: ProdService
   ) {}
@@ -30,13 +30,13 @@ export class MediaModalComponent implements OnInit {
     }
   }
 
-  openModal(content: NgbModalRef) {
-    this._modalService.open(content, {
-      ariaLabelledBy: "modal-basic-title",
-      size: "xl",
-      centered: true,
-    }).result;
-  }
+  // openModal(content: NgbModalRef) {
+  //   this._modalService.open(content, {
+  //     ariaLabelledBy: "modal-basic-title",
+  //     size: "xl",
+  //     centered: true,
+  //   }).result;
+  // }
 
   onFileChange(ev) {
     this.selectedFiles = ev.target.files;
