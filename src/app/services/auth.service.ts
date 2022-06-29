@@ -2,7 +2,7 @@ import { Router } from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { User } from "../model/user.model";
+import { User } from "../model/auth.model";
 import { environment } from "src/environments/environment";
 import { lastValueFrom } from "rxjs";
 
@@ -10,27 +10,29 @@ import { lastValueFrom } from "rxjs";
   providedIn: "root",
 })
 export class UserService {
-  currentCookie: string;
+  currentUserToken: string;
 
   constructor(
     private http: HttpClient,
     private cookie_service: CookieService,
     private route: Router
   ) {
-    this.currentCookie = this.cookie_service.get(environment.TOKEN_NAME)
+    this.currentUserToken = this.cookie_service.get(environment.TOKEN_NAME)
   }
 
   async getCurrentUser() {
     try {
-      if (!this.currentCookie) {
+      if (!this.currentUserToken) {
         this.route.navigate(["/login"]);
         throw 'no token found'
       }
 
-      const headers = { Authorization: "Bearer " + this.currentCookie };
+      const headers = { Authorization: "Bearer " + this.currentUserToken };
 
-      return <{ currentUser: User }>await lastValueFrom(this.http
+      const currentUserData = <{ currentUser: User }>await lastValueFrom(this.http
         .get(environment.GET_CURRENT_USER, { headers }));
+
+      return { currentUser: currentUserData.currentUser, token: this.currentUserToken }
     } catch (error) {
       return error;
     }

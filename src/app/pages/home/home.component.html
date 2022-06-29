@@ -1,8 +1,43 @@
-<div class="home">
-  <app-navbar></app-navbar>
-  <!--   <main>
-    <div class="home-ct">
-      <app-prod-list></app-prod-list>
+<nz-layout>
+  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+    <div class="logo">
+      <img [src]="currentUser?.avatar" alt="" srcset="" style="height: 50px; width: 50px;">
+      <span [innerText]="currentUser?.username"></span>
     </div>
-  </main> -->
-</div>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      <li nz-submenu nzTitle="User">
+        <ul>
+          <li nz-menu-item>Tom</li>
+          <li nz-menu-item>Bill</li>
+          <li nz-menu-item>Alex</li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="Team">
+        <ul>
+          <li nz-menu-item>Team 1</li>
+          <li nz-menu-item>Team 2</li>
+        </ul>
+      </li>
+      <li nz-menu-item>
+        <span>File</span>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <i
+        class="trigger"
+        nz-icon
+        [nzType]="isCollapsed ? 'left' : 'right'"
+        (click)="isCollapsed = !isCollapsed"
+      ></i>
+    </nz-header>
+    <nz-content>
+      <nz-breadcrumb>
+        <nz-breadcrumb-item>User</nz-breadcrumb-item>
+        <nz-breadcrumb-item>Bill</nz-breadcrumb-item>
+      </nz-breadcrumb>
+      <div class="inner-content">Bill is a cat.</div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

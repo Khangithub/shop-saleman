@@ -1,7 +1,7 @@
 import { Actions, ofType, createEffect } from "@ngrx/effects";
 import { Injectable } from "@angular/core";
 import { UserService } from "src/app/services/auth.service";
-import { authFailed, getCurrentUser, loginWithEmailNPassword, lgSuc, saveToken, getCurrentUserSuccess } from "../actions/user.actions";
+import { authFailed, getCurrentUser, loginWithEmailNPassword, redirect2LoginPage, saveCurrentUserNTokenSuccessful, saveToken } from "../actions/auth.actions";
 import { catchError, map, switchMap, tap } from "rxjs/operators";
 import { from, of } from "rxjs";
 import { Router } from "@angular/router";
@@ -16,7 +16,8 @@ export class UserEffect {
     private router: Router,
     private cookie_service: CookieService,
   ) { }
-
+  
+  // Login action
   loginWithEmailNPassword$ = createEffect(() =>
     this.action.pipe(
       ofType(loginWithEmailNPassword),
@@ -25,7 +26,7 @@ export class UserEffect {
           switchMap(
             (data => {
               if (data.hasOwnProperty('currentUser') && data.hasOwnProperty('token')) {
-                return [lgSuc({ currentUser: data.currentUser, token: data.token }), saveToken({ token: data.token })]
+                return [saveCurrentUserNTokenSuccessful({ currentUser: data.currentUser, token: data.token }), saveToken({ token: data.token })]
               } else {
                 throw data;
               }
@@ -39,7 +40,7 @@ export class UserEffect {
 
   redirectLoginSuccess$ = createEffect(() =>
     this.action.pipe(
-      ofType(lgSuc),
+      ofType(saveCurrentUserNTokenSuccessful),
       tap((_) => this.router.navigate(['/']))
     ), { dispatch: false })
 
@@ -49,20 +50,28 @@ export class UserEffect {
       tap(({ token }) => this.cookie_service.set(environment.TOKEN_NAME, token))
     ), { dispatch: false })
 
+  // Get current user action
   getCurrentUser$ = createEffect(() =>
     this.action.pipe(
       ofType(getCurrentUser),
       switchMap(() =>
         from(this.user_service.getCurrentUser()).pipe(
-          switchMap(
+          map(
             (data => {
-              if (data.hasOwnProperty('currentUser')) {
-                return [getCurrentUserSuccess({ currentUser: data.currentUser })]
+              if (data.hasOwnProperty('currentUser') && data.hasOwnProperty('token')) {
+                return saveCurrentUserNTokenSuccessful({ currentUser: data.currentUser, token: data.token })
               } else {
                 throw data;
               }
             }),
           ),
-          catchError((errorMessage: string) => of(authFailed({ errorMessage })))
+          catchError((errorMessage: string) => of(authFailed({ errorMessage }), redirect2LoginPage()))
         ))))
+  
+        
+  redirect2LoginPage$ = createEffect(() =>
+  this.action.pipe(
+    ofType(redirect2LoginPage),
+    tap((_) => this.router.navigate(['/login']))
+  ), { dispatch: false })
 }

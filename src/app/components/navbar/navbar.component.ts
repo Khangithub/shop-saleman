@@ -3,7 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { AppState } from "src/app/store";
-import { getCurrentUser } from "src/app/store/actions/user.actions";
+import { getCurrentUser } from "src/app/store/actions/auth.actions";
 
 @Component({
   selector: "app-navbar",

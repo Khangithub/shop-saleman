@@ -16,8 +16,8 @@ import { SettingsComponent } from "./pages/settings/settings.component";
 import { MediaModalComponent } from "./components/media-modal/media-modal.component";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
-import { UserEffect } from "src/app/store/effects/user.effects";
-import { userReducer } from "src/app/store/reducers/user.reducers";
+import { UserEffect } from "src/app/store/effects/auth.effects";
+import { userReducer } from "src/app/store/reducers/auth.reducers";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzInputModule } from 'ng-zorro-antd/input';
@@ -27,7 +27,9 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
-
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { NzMenuModule } from 'ng-zorro-antd/menu'
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +57,9 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
     NzMessageModule,
     BrowserAnimationsModule,
     NzSpinModule,
+    NzLayoutModule,
+    NzBreadCrumbModule,
+    NzMenuModule,
     EffectsModule.forRoot([UserEffect]),
     StoreModule.forRoot({ user: userReducer }),
     StoreDevtoolsModule.instrument({
