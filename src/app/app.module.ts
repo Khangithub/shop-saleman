@@ -27,7 +27,9 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
-
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { NzMenuModule } from 'ng-zorro-antd/menu'
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +57,9 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
     NzMessageModule,
     BrowserAnimationsModule,
     NzSpinModule,
+    NzLayoutModule,
+    NzBreadCrumbModule,
+    NzMenuModule,
     EffectsModule.forRoot([UserEffect]),
     StoreModule.forRoot({ user: userReducer }),
     StoreDevtoolsModule.instrument({

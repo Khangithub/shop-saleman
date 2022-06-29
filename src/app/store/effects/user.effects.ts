@@ -1,7 +1,7 @@
 import { Actions, ofType, createEffect } from "@ngrx/effects";
 import { Injectable } from "@angular/core";
 import { UserService } from "src/app/services/auth.service";
-import { authFailed, getCurrentUser, loginWithEmailNPassword, lgSuc, saveToken, getCurrentUserSuccess } from "../actions/user.actions";
+import { authFailed, getCurrentUser, loginWithEmailNPassword, saveCurrentUserNTokenSuccessful, saveToken } from "../actions/user.actions";
 import { catchError, map, switchMap, tap } from "rxjs/operators";
 import { from, of } from "rxjs";
 import { Router } from "@angular/router";
@@ -25,7 +25,7 @@ export class UserEffect {
           switchMap(
             (data => {
               if (data.hasOwnProperty('currentUser') && data.hasOwnProperty('token')) {
-                return [lgSuc({ currentUser: data.currentUser, token: data.token }), saveToken({ token: data.token })]
+                return [saveCurrentUserNTokenSuccessful({ currentUser: data.currentUser, token: data.token }), saveToken({ token: data.token })]
               } else {
                 throw data;
               }
@@ -39,7 +39,7 @@ export class UserEffect {
 
   redirectLoginSuccess$ = createEffect(() =>
     this.action.pipe(
-      ofType(lgSuc),
+      ofType(saveCurrentUserNTokenSuccessful),
       tap((_) => this.router.navigate(['/']))
     ), { dispatch: false })
 
@@ -54,10 +54,10 @@ export class UserEffect {
       ofType(getCurrentUser),
       switchMap(() =>
         from(this.user_service.getCurrentUser()).pipe(
-          switchMap(
+          map(
             (data => {
-              if (data.hasOwnProperty('currentUser')) {
-                return [getCurrentUserSuccess({ currentUser: data.currentUser })]
+              if (data.hasOwnProperty('currentUser') && data.hasOwnProperty('token')) {
+                return saveCurrentUserNTokenSuccessful({ currentUser: data.currentUser, token: data.token })
               } else {
                 throw data;
               }

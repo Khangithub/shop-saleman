@@ -2,8 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { AppState } from "src/app/store";
 import { loginWithEmailNPassword } from "src/app/store/actions/user.actions";
-import { NzMessageService } from 'ng-zorro-antd/message';
 import { selectUserState } from "src/app/store/selectors/user.selectors";
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: "app-login",
@@ -18,8 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private store: Store<AppState>,
     private message: NzMessageService
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     this.store.select(selectUserState).subscribe(({ authError }) => {

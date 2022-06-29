@@ -3,7 +3,7 @@ import { User } from "src/app/model/user.model";
 
 export const Types = {
   LOGIN_PWD: "[USER] login with password",
-  LOGIN_SUC: "[USER] login successfully",
+  SAVE_CURRENT_USER_N_TOKEN_SUCCESSFUL: "[USER] save current user and token successful",
   SAVE_TOKEN: "[USER] save token",
   GET_CURRENT_USER: "[USER] get current user",
   GET_CURRENT_USER_SUCCESS: "[USER] get current user success",
@@ -22,10 +22,8 @@ export const saveToken = createAction(
   props<{ token: string }>()
 )
 
-export const getCurrentUserSuccess = createAction(Types.GET_CURRENT_USER_SUCCESS, props<{ currentUser: User }>())
-
-export const lgSuc = createAction(
-  Types.LOGIN_SUC,
+export const saveCurrentUserNTokenSuccessful = createAction(
+  Types.SAVE_CURRENT_USER_N_TOKEN_SUCCESSFUL,
   props<{ currentUser: User; token: string }>()
 );
 

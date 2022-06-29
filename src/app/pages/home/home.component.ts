@@ -1,10 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { ProdService } from "src/app/services/product.service";
-import { UserService } from 'src/app/services/auth.service';
 import { AppState } from "src/app/store";
 import { User } from "src/app/model/user.model";
 import { Product } from "src/app/model/product.model";
+import { selectUserState } from "src/app/store/selectors/user.selectors";
 import { getCurrentUser } from "src/app/store/actions/user.actions";
 
 @Component({
@@ -15,8 +14,15 @@ import { getCurrentUser } from "src/app/store/actions/user.actions";
 export class HomeComponent implements OnInit {
   currentUser: User;
   prods: Product[];
-
-  constructor(private product_service: ProdService, private user_service: UserService, private store:Store<AppState>) {
+  isCollapsed: boolean = false;
+  constructor(private store: Store<AppState>) {
+    this.store.select(selectUserState).subscribe(({ currentUser }) => {
+      if (currentUser) {
+        this.currentUser = currentUser
+      } else {
+        this.store.dispatch(getCurrentUser())
+      }
+    })
   }
 
   async ngOnInit() {
