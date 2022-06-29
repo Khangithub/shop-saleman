@@ -24,6 +24,9 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzMessageModule } from 'ng-zorro-antd/message';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 @NgModule({
   declarations: [
@@ -49,6 +52,9 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
     NzTypographyModule,
     NzDividerModule,
     NzIconModule,
+    NzMessageModule,
+    BrowserAnimationsModule,
+    NzSpinModule,
     EffectsModule.forRoot([UserEffect]),
     StoreModule.forRoot({ user: userReducer }),
     StoreDevtoolsModule.instrument({

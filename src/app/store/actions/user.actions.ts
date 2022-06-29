@@ -7,7 +7,7 @@ export const Types = {
   SAVE_TOKEN: "[USER] save token",
   GET_CURRENT_USER: "[USER] get current user",
   GET_CURRENT_USER_SUCCESS: "[USER] get current user success",
-  LOGIN_FAILED: "[USER] login failed",
+  LOGIN_FAILED: "[USER] auth failed",
 };
 
 export const loginWithEmailNPassword = createAction(

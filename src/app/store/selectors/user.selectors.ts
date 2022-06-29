@@ -3,4 +3,4 @@ import { AppState } from "..";
 
 export const userState = (state: AppState) => state.user;
 
-export const selectCurrentUser = createSelector(userState, (user) => user);
+export const selectUserState = createSelector(userState, (user) => user);

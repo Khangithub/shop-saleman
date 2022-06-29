@@ -13,6 +13,7 @@ export const userReducer = createReducer(
     ...state,
     currentUser,
     token,
+    authError: null
   })),
 
   on(authFailed, (state, { errorMessage }) => (

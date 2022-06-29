@@ -63,6 +63,6 @@ export class UserEffect {
               }
             }),
           ),
-          catchError(({ error }) => of(authFailed({ errorMessage: error.message })))
+          catchError((errorMessage: string) => of(authFailed({ errorMessage })))
         ))))
 }

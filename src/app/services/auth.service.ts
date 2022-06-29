@@ -23,7 +23,8 @@ export class UserService {
   async getCurrentUser() {
     try {
       if (!this.currentCookie) {
-        return this.route.navigate(["/login"]);
+        this.route.navigate(["/login"]);
+        throw 'no token found'
       }
 
       const headers = { Authorization: "Bearer " + this.currentCookie };

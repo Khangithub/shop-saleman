@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { AppState } from "src/app/store";
 import { loginWithEmailNPassword } from "src/app/store/actions/user.actions";
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { selectUserState } from "src/app/store/selectors/user.selectors";
 
 @Component({
   selector: "app-login",
@@ -11,18 +13,23 @@ import { loginWithEmailNPassword } from "src/app/store/actions/user.actions";
 export class LoginComponent implements OnInit {
   email: string = "";
   password: string = "";
-  isLogin: boolean = false;
   passwordVisible: boolean = false;
-
 
   constructor(
     private store: Store<AppState>,
-  ) {}
+    private message: NzMessageService
+  ) {
+  }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.store.select(selectUserState).subscribe(({ authError }) => {
+      if (authError) {
+        this.message.warning(authError)
+      }
+    });
+  }
 
   login() {
-    this.isLogin = true;
     this.store.dispatch(loginWithEmailNPassword({ email: this.email, password: this.password }));
   }
 }
