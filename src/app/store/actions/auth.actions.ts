@@ -7,8 +7,8 @@ export const Types = {
   SAVE_TOKEN: "[AUTH] save token",
   GET_CURRENT_USER: "[AUTH] get current user",
   GET_CURRENT_USER_SUCCESS: "[AUTH] get current user success",
+  REDIRECT_TO_LOGIN_PAGE: "[AUTH] redirect to login page",
   LOGIN_FAILED: "[AUTH] auth failed",
-  REDIRECT_TO_LOGIN_PAGE: "[AUTH] redirect to login page"
 };
 
 export const loginWithEmailNPassword = createAction(

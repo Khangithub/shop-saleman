@@ -30,6 +30,12 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzMenuModule } from 'ng-zorro-antd/menu'
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { ProductEffect } from "./store/effects/product.effects";
+import { productReducer } from "./store/reducers/product.reducers";
+import { ProductTableComponent } from './components/product-table/product-table.component';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +49,7 @@ import { NzMenuModule } from 'ng-zorro-antd/menu'
     ChatsComponent,
     SettingsComponent,
     MediaModalComponent,
+    ProductTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,8 +67,10 @@ import { NzMenuModule } from 'ng-zorro-antd/menu'
     NzLayoutModule,
     NzBreadCrumbModule,
     NzMenuModule,
-    EffectsModule.forRoot([UserEffect]),
-    StoreModule.forRoot({ user: userReducer }),
+    NzTableModule,
+    NzDropDownModule,
+    EffectsModule.forRoot([UserEffect, ProductEffect]),
+    StoreModule.forRoot({ user: userReducer, product: productReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
     }),

@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { ProdService } from "src/app/services/product.service";
+import { ProductService } from "src/app/services/product.service";
 
 @Component({
   selector: "app-edit-prod",
@@ -21,7 +21,7 @@ export class EditProdComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private product_service: ProdService
+    private product_service: ProductService
   ) {}
 
   async ngOnInit() {

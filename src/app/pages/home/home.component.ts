@@ -3,8 +3,10 @@ import { Store } from "@ngrx/store";
 import { AppState } from "src/app/store";
 import { User } from "src/app/model/auth.model";
 import { Product } from "src/app/model/product.model";
-import { selectUserState } from "src/app/store/selectors/auth.selectors";
+import { selectUserStore } from "src/app/store/selectors/auth.selectors";
 import { getCurrentUser } from "src/app/store/actions/auth.actions";
+import { getProductsOfSalemanAction } from "src/app/store/actions/product.actions";
+import { selectProductStore } from "src/app/store/selectors/product.select";
 
 @Component({
   selector: "app-home",
@@ -13,20 +15,22 @@ import { getCurrentUser } from "src/app/store/actions/auth.actions";
 })
 export class HomeComponent implements OnInit {
   currentUser: User;
-  prods: Product[];
+  products: Product[];
   isCollapsed: boolean = false;
-  constructor(private store: Store<AppState>) {
-    this.store.select(selectUserState).subscribe(({ currentUser }) => {
+  constructor(private store: Store<AppState>) { }
+
+  async ngOnInit() {
+    this.store.select(selectUserStore).subscribe(({ currentUser }) => {
       if (currentUser) {
         this.currentUser = currentUser
+        this.store.dispatch(getProductsOfSalemanAction({ salemanId: currentUser._id, pageIndex: 1, limit: 6 }))
       } else {
         this.store.dispatch(getCurrentUser())
       }
     })
-  }
 
-  async ngOnInit() {
-    // this.currentUser = await this.user_service.getCurrentUser();
-    // this.prods = await this.product_service.getProdsBySaleman(this.currentUser._id, 1, 6);
+    this.store.select(selectProductStore).subscribe(({ products }) => {
+      this.products = products
+    })
   }
 }

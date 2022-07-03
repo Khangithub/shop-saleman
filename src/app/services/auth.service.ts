@@ -22,11 +22,6 @@ export class UserService {
 
   async getCurrentUser() {
     try {
-      if (!this.currentUserToken) {
-        this.route.navigate(["/login"]);
-        throw 'no token found'
-      }
-
       const headers = { Authorization: "Bearer " + this.currentUserToken };
 
       const currentUserData = <{ currentUser: User }>await lastValueFrom(this.http

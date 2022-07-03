@@ -1,6 +1,6 @@
 import { createSelector } from "@ngrx/store";
 import { AppState } from "..";
 
-export const userState = (state: AppState) => state.user;
+export const userStore = (state: AppState) => state.user;
 
-export const selectUserState = createSelector(userState, (user) => user);
+export const selectUserStore = createSelector(userStore, (user) => user);

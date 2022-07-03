@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { AppState } from "src/app/store";
 import { loginWithEmailNPassword } from "src/app/store/actions/auth.actions";
-import { selectUserState } from "src/app/store/selectors/auth.selectors";
+import { selectUserStore } from "src/app/store/selectors/auth.selectors";
 import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.store.select(selectUserState).subscribe(({ authError }) => {
+    this.store.select(selectUserStore).subscribe(({ authError }) => {
       if (authError) {
         this.message.warning(authError)
       }

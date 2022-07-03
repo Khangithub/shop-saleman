@@ -1,13 +1,13 @@
 <nz-layout>
   <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
     <div class="logo">
-      <img [src]="currentUser?.avatar" alt="" srcset="" style="height: 50px; width: 50px;">
+      <img [src]="currentUser?.avatar" alt="" srcset="" style="height: 50px; width: 50px; margin-right: 10px;">
       <span [innerText]="currentUser?.username"></span>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
       <li nz-submenu nzTitle="User">
         <ul>
-          <li nz-menu-item>Tom</li>
+          <li nz-menu-item>Product List</li>
           <li nz-menu-item>Bill</li>
           <li nz-menu-item>Alex</li>
         </ul>
@@ -37,7 +37,9 @@
         <nz-breadcrumb-item>User</nz-breadcrumb-item>
         <nz-breadcrumb-item>Bill</nz-breadcrumb-item>
       </nz-breadcrumb>
-      <div class="inner-content">Bill is a cat.</div>
+      <div class="inner-content">
+        <app-product-table [products]="products" [displayedProducts]="products"></app-product-table>
+      </div>
     </nz-content>
   </nz-layout>
 </nz-layout>

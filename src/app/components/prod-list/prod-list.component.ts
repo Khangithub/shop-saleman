@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { ProdService } from "src/app/services/product.service";
+import { ProductService } from "src/app/services/product.service";
 import { UserService } from "src/app/services/auth.service";
 
 @Component({
@@ -15,13 +15,13 @@ export class ProdListComponent implements OnInit {
 
   constructor(
     private user_service: UserService,
-    private product_service: ProdService,
+    private product_service: ProductService,
     private route: Router
   ) {}
 
   async ngOnInit() {
     this.currentUser = await this.user_service.getCurrentUser();
-    this.prods = await this.product_service.getProdsBySaleman(
+    this.prods = await this.product_service.getProductsOfSaleman(
       this.currentUser._id,
       1,
       6

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 // import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { UserService } from "src/app/services/auth.service";
-import { ProdService } from "src/app/services/product.service";
+import { ProductService } from "src/app/services/product.service";
 
 @Component({
   selector: "app-media-modal",
@@ -18,7 +18,7 @@ export class MediaModalComponent implements OnInit {
   constructor(
     // private _modalService: NgbModal,
     private user_service: UserService,
-    private product_service: ProdService
+    private product_service: ProductService
   ) {}
 
   async ngOnInit() {
