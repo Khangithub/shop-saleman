@@ -25,7 +25,7 @@ const routes: Routes = [
     component: SettingsComponent,
   },
   {
-    path: "prod/edit/:prodId",
+    path: "product/edit/:prodId",
     component: EditProdComponent,
   },
   { path: "**", component: NotfoundComponent },

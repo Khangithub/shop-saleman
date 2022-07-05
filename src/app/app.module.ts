@@ -7,7 +7,6 @@ import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { HomeComponent } from "./pages/home/home.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
-import { ProdListComponent } from "./components/prod-list/prod-list.component";
 import { EditProdComponent } from "./pages/edit-prod/edit-prod.component";
 import { NotfoundComponent } from "./pages/notfound/notfound.component";
 import { VariantModelComponent } from "./components/variant-model/variant-model.component";
@@ -35,6 +34,8 @@ import { ProductEffect } from "./store/effects/product.effects";
 import { productReducer } from "./store/reducers/product.reducers";
 import { ProductTableComponent } from './components/product-table/product-table.component';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+import { LayoutComponent } from './components/layout/layout.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,6 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
     HomeComponent,
     NavbarComponent,
     LoginComponent,
-    ProdListComponent,
     EditProdComponent,
     NotfoundComponent,
     VariantModelComponent,
@@ -50,6 +50,7 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
     SettingsComponent,
     MediaModalComponent,
     ProductTableComponent,
+    LayoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +70,7 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
     NzMenuModule,
     NzTableModule,
     NzDropDownModule,
+    NzPaginationModule,
     EffectsModule.forRoot([UserEffect, ProductEffect]),
     StoreModule.forRoot({ user: userReducer, product: productReducer }),
     StoreDevtoolsModule.instrument({

@@ -11,12 +11,9 @@ import { getCurrentUser } from "src/app/store/actions/auth.actions";
   styleUrls: ["./navbar.component.scss"],
 })
 export class NavbarComponent implements OnInit {
-  constructor(private route: Router,
-    private store: Store<AppState>,
-    private user_service: UserService) {
-    this.store.dispatch(getCurrentUser())
+  constructor() {
   }
 
-  async ngOnInit() {
+  ngOnInit() {
   }
 }

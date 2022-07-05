@@ -21,12 +21,11 @@ export class EditProdComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private product_service: ProductService
   ) {}
 
   async ngOnInit() {
     let prodId = this.route.snapshot.paramMap.get("prodId");
-    this.currentProd = await this.product_service.getProd(prodId);
+
   }
 
   allowDrag(e: DragEvent): void {
@@ -75,16 +74,16 @@ export class EditProdComponent implements OnInit {
   }
 
   async onSubmit() {
-    const res: any = await this.product_service.uploadProdMedia(
-      this.selectedFiles,
-      this.currentProd._id
-    );
-    if (res.updated) {
-      this.currentProd.mediaList = [
-        ...this.currentProd.mediaList,
-        ...res.mediaList,
-      ];
-    }
+    // const res: any = await this.product_service.uploadProdMedia(
+    //   this.selectedFiles,
+    //   this.currentProd._id
+    // );
+    // if (res.updated) {
+    //   this.currentProd.mediaList = [
+    //     ...this.currentProd.mediaList,
+    //     ...res.mediaList,
+    //   ];
+    // }
   }
 
   updateVariant(data: any) {
@@ -114,10 +113,10 @@ export class EditProdComponent implements OnInit {
   }
 
   async editProd() {
-    this.savingChange = true;
-    const res: any = await this.product_service.editProd(this.currentProd);
-    if (res.updated) {
-      this.savingChange = false;
-    }
+    // this.savingChange = true;
+    // const res: any = await this.product_service.editProd(this.currentProd);
+    // if (res.updated) {
+    //   this.savingChange = false;
+    // }
   }
 }

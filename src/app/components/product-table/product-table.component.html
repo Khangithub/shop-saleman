@@ -1,4 +1,4 @@
-<nz-table #nzTable [nzData]="displayedProducts" nzTableLayout="fixed">
+<nz-table #nzTable [nzData]="displayedProducts" nzTableLayout="fixed" [nzFrontPagination]="false">
     <thead>
         <tr>
             <th nzCustomFilter>
@@ -9,6 +9,7 @@
             </th>
             <th>Id</th>
             <th>Total In-Stock</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -16,6 +17,7 @@
             <td>{{ data.name }}</td>
             <td>{{ data._id }}</td>
             <td>{{ data.inStock }}</td>
+            <td (click)="onEditProduct(data._id)">Edit</td>
         </tr>
     </tbody>
 </nz-table>
@@ -28,3 +30,4 @@
         </div>
     </div>
 </nz-dropdown-menu>
+<nz-pagination [nzPageIndex]="1" [nzTotal]="nzTable.data.length" [nzPageSize]="6"></nz-pagination>
