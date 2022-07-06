@@ -6,8 +6,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { HomeComponent } from "./pages/home/home.component";
-import { NavbarComponent } from "./components/navbar/navbar.component";
-import { EditProdComponent } from "./pages/edit-prod/edit-prod.component";
+import { EditProductComponent } from "./pages/edit-prod/edit-product.component";
 import { NotfoundComponent } from "./pages/notfound/notfound.component";
 import { VariantModelComponent } from "./components/variant-model/variant-model.component";
 import { ChatsComponent } from "./pages/chats/chats.component";
@@ -41,9 +40,8 @@ import { LayoutComponent } from './components/layout/layout.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    NavbarComponent,
     LoginComponent,
-    EditProdComponent,
+    EditProductComponent,
     NotfoundComponent,
     VariantModelComponent,
     ChatsComponent,

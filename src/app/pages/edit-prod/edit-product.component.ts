@@ -1,14 +1,18 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { ProductService } from "src/app/services/product.service";
+import { Store } from "@ngrx/store";
+import { Product } from "src/app/model/product.model";
+import { AppState } from "src/app/store";
+import { getCurrentProductAction } from "src/app/store/actions/product.actions";
+import { selectProductStore } from "src/app/store/selectors/product.select";
 
 @Component({
   selector: "app-edit-prod",
-  templateUrl: "./edit-prod.component.html",
-  styleUrls: ["./edit-prod.component.scss"],
+  templateUrl: "./edit-product.component.html",
+  styleUrls: ["./edit-product.component.scss"],
 })
-export class EditProdComponent implements OnInit {
-  currentProd: any;
+export class EditProductComponent implements OnInit {
+  currentProd: Product;
   selectedFiles = [];
 
   variantName: string = "";
@@ -21,11 +25,15 @@ export class EditProdComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-  ) {}
+    private store: Store<AppState>
+  ) { }
 
   async ngOnInit() {
-    let prodId = this.route.snapshot.paramMap.get("prodId");
-
+    const productId: string = this.route.snapshot.paramMap.get("prodId");
+    this.store.dispatch(getCurrentProductAction({ productId }));
+    this.store.select(selectProductStore).subscribe(({ product }) => {
+      this.currentProd = product
+    })
   }
 
   allowDrag(e: DragEvent): void {
@@ -96,17 +104,17 @@ export class EditProdComponent implements OnInit {
     };
 
     if (propImgUrl && propName && propPrice && variantName) {
-      if (this.currentProd.variants.hasOwnProperty(variantName)) {
-        this.currentProd.variants[variantName].unshift(varProp);
-      } else {
-        let variant = {};
-        variant[variantName] = [];
-        variant[variantName].push(varProp);
-        this.currentProd.variants = {
-          ...variant,
-          ...this.currentProd.variants,
-        };
-      }
+      // if (this.currentProd.variants.hasOwnProperty(variantName)) {
+      //   this.currentProd.variants[variantName].unshift(varProp);
+      // } else {
+      //   let variant = {};
+      //   variant[variantName] = [];
+      //   variant[variantName].push(varProp);
+      //   this.currentProd.variants = {
+      //     ...variant,
+      //     ...this.currentProd.variants,
+      //   };
+      // }
 
       this.openVariantModal = false;
     }

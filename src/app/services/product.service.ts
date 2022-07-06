@@ -11,7 +11,7 @@ import { Product } from "../model/product.model";
 })
 export class ProductService {
   private currentUserToken: string = "";
-  
+
   constructor(
     private http: HttpClient,
     private cookie_service: CookieService,
@@ -36,14 +36,13 @@ export class ProductService {
     }
   }
 
-  async getProd(prodId: string) {
+  async getCurrentProduct(productId: string) {
     try {
-      const prodReq = await lastValueFrom(this.http
-        .get(environment.GET_PRODUCT + prodId)
-      )
-      return prodReq;
-    } catch (err) {
-      console.log("err", err);
+      return await lastValueFrom(this.http
+        .get(environment.GET_PRODUCT + productId)
+      );
+    } catch (error) {
+      return error;
     }
   }
 

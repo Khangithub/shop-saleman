@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { catchError, map, switchMap, tap } from "rxjs/operators";
 import { from, of } from "rxjs";
 import { ProductService } from "src/app/services/product.service";
-import { getFailedProductAction, getProductsOfSalemanAction, getProductsOfSalemanSuccessAction } from "../actions/product.actions";
+import { getCurrentProductAction, getCurrentProductSuccessAction, getFailedProductAction, getProductsOfSalemanAction, getProductsOfSalemanSuccessAction } from "../actions/product.actions";
 
 @Injectable()
 export class ProductEffect {
@@ -22,7 +22,28 @@ export class ProductEffect {
                         (result => {
                             if (result.hasOwnProperty('docs')) {
                                 return getProductsOfSalemanSuccessAction({ products: result.docs });
-                            }else{
+                            } else {
+                                throw result;
+                            }
+                        }),
+                    ),
+                    catchError(({ error }) => of(getFailedProductAction({ errorMessage: error.err.message })))
+                )
+            ),
+        )
+    )
+
+    // get current product action
+    getCurrentProduct$ = createEffect(() =>
+        this.action.pipe(
+            ofType(getCurrentProductAction),
+            switchMap(({ productId }) =>
+                from(this.product_service.getCurrentProduct(productId)).pipe(
+                    map(
+                        (result => {
+                            if (result.hasOwnProperty('name')) {
+                                return getCurrentProductSuccessAction({ product: result })
+                            } else {
                                 throw result;
                             }
                         }),
