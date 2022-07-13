@@ -9,10 +9,8 @@
       <label>Product Image: </label>
       <div class="prod-img-ct" [ngStyle]="{
             'background-image': 'url(' + currentProduct?.productImage + ')'
-          }">
-        <app-media-modal (selectedImgUrl)="currentProduct.productImage = $event">
-          <img src="../../../assets/svgs/edit.svg" alt="edit-prod" class="middle" />
-        </app-media-modal>
+          }" (click)="openMediaModal()">
+        <img src="../../../assets/svgs/edit.svg" alt="edit-prod" class="middle" />
       </div>
 
       <label>Price: </label>

@@ -6,12 +6,11 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { HomeComponent } from "./pages/home/home.component";
-import { EditProductComponent } from "./pages/edit-prod/edit-product.component";
+import { EditProductComponent } from "./pages/edit-product/edit-product.component";
 import { NotfoundComponent } from "./pages/notfound/notfound.component";
 import { VariantModelComponent } from "./components/variant-model/variant-model.component";
 import { ChatsComponent } from "./pages/chats/chats.component";
 import { SettingsComponent } from "./pages/settings/settings.component";
-import { MediaModalComponent } from "./components/media-modal/media-modal.component";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
 import { UserEffect } from "src/app/store/effects/auth.effects";
@@ -36,7 +35,10 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { LayoutComponent } from './components/layout/layout.component';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MediaModalComponent } from './components/media-modal/media-modal.component';
 
+const meterial = [MatDialogModule];
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,11 +49,12 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
     VariantModelComponent,
     ChatsComponent,
     SettingsComponent,
-    MediaModalComponent,
     ProductTableComponent,
     LayoutComponent,
+    MediaModalComponent,
   ],
   imports: [
+    meterial,
     BrowserModule,
     FormsModule,
     HttpClientModule,
@@ -77,6 +80,7 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
       maxAge: 25,
     }),
   ],
+  exports: [meterial],
   providers: [],
   bootstrap: [AppComponent],
 })

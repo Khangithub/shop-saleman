@@ -26,3 +26,9 @@ export interface Variant {
     propPrice: string;
   };
 }
+
+export interface MediaItem {
+  _id: string;
+  mimetype: string;
+  filename: string;
+}

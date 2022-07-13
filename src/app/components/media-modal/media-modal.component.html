@@ -1,8 +1,16 @@
-<nz-modal [(nzVisible)]="isVisibleMiddle" nzTitle="Vertically centered modal dialog" nzCentered
-  (nzOnCancel)="handleCancelMiddle()" (nzOnOk)="handleOkMiddle()">
-  <ng-container *nzModalContent>
-    <p>some contents...</p>
-    <p>some contents...</p>
-    <p>some contents...</p>
-  </ng-container>
-</nz-modal>
+<h5 mat-dialog-title style="display: flex; justify-content: space-between;">
+    <span>Select Product Image</span>
+    <button mat-dialog-close="">Close</button>
+</h5>
+
+<mat-dialog-content>
+    <img *ngFor="let mediaItem of imageMedia; index as i" [src]="mediaItem" alt="filename"
+        style="height: 100px; width: 100px; margin: 5px;" />
+
+    <button mat-button style="height: 100px; width: 100px;">+</button>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button>Images</button>
+    <button>Videos</button>
+</mat-dialog-actions>
