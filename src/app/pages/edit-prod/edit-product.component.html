@@ -1,27 +1,27 @@
-<app-layout>
-  <div class="prod-modal-ct">
-    <div class="prod-modal-layout">
-      <label>Product Id: {{currentProd?._id}}</label>
+<app-layout style="overflow: scroll;">
+  <div class="product-modal-ct">
+    <div class="product-modal-layout">
+      <label>Product Id: {{currentProduct?._id}}</label>
       <label>Name: </label>
-      <input class="form-control" type="text" [value]="currentProd?.name"
-        (change)="currentProd.name = $event.target.value" />
+      <input class="form-control" type="text" [value]="currentProduct?.name"
+        (change)="currentProduct.name = $event.target.value" />
 
       <label>Product Image: </label>
       <div class="prod-img-ct" [ngStyle]="{
-            'background-image': 'url(' + currentProd?.productImage + ')'
+            'background-image': 'url(' + currentProduct?.productImage + ')'
           }">
-        <app-media-modal (selectedImgUrl)="currentProd.productImage = $event">
+        <app-media-modal (selectedImgUrl)="currentProduct.productImage = $event">
           <img src="../../../assets/svgs/edit.svg" alt="edit-prod" class="middle" />
         </app-media-modal>
       </div>
 
       <label>Price: </label>
-      <input type="number" class="form-control" min="0" [value]="currentProd?.price"
-        (change)="currentProd.price = $event.target.value" />
+      <input type="number" class="form-control" min="0" [value]="currentProduct?.price"
+        (change)="currentProduct.price = $event.target.value" />
 
       <label>Discount (%): </label>
-      <input type="number" class="form-control" min="0" max="100" [value]="currentProd?.discount"
-        (change)="currentProd.discount = $event.target.value" />
+      <input type="number" class="form-control" min="0" max="100" [value]="currentProduct?.discount"
+        (change)="currentProduct.discount = $event.target.value" />
 
       <label>Variants:
         <img class="add-variant-btn" (click)="openVariantModal = !openVariantModal" [src]="
@@ -33,7 +33,7 @@
       <app-variant-model *ngIf="openVariantModal" [variantName]="variantName" [propName]="propName"
         [propPrice]="propPrice" [propImgUrl]="propImgUrl" (closeModalEvent)="updateVariant($event)"></app-variant-model>
 
-      <div *ngFor="let vrt of currentProd?.variants | keyvalue; index as i">
+      <div *ngFor="let vrt of currentProduct?.variants | keyvalue; index as i">
         <div class="variant-item-ct" [id]="vrt.key + '-' + i + '-variantCt'">
           <b [innerText]="vrt.key"></b>
           <div class="variant-prop-ct" *ngFor="let varProp of vrt.value; index as y" draggable="true"
@@ -48,24 +48,24 @@
       </div>
     </div>
 
-    <div class="prod-modal-layout">
-      <button (click)="editProd()" [innerText]="savingChange ? 'Saving ...' : 'Save'" [disabled]="savingChange"
-        class="save-change-btn"></button>
+    <div class="product-modal-layout">
+      <button nz-button (click)="editProd()" [innerText]="savingChange ? 'Saving ...' : 'Save'"
+        [disabled]="savingChange" class="save-change-btn"></button>
       <label>Category: </label>
-      <select class="form-control" [value]="currentProd?.category"
-        (change)="currentProd.category = $event.target.value">
+      <select class="form-control" [value]="currentProduct?.category"
+        (change)="currentProduct.category = $event.target.value">
         <option value="book">book</option>
         <option value="technology">technology</option>
         <option value="food">food</option>
       </select>
 
       <label>Manufacturer: </label>
-      <input class="form-control" type="text" [value]="currentProd?.manufacturer"
-        (change)="currentProd.manufacturer = $event.target.value" />
+      <input class="form-control" type="text" [value]="currentProduct?.manufacturer"
+        (change)="currentProduct.manufacturer = $event.target.value" />
 
       <label>Description: </label>
-      <textarea class="form-control" rows="5" [value]="currentProd?.description"
-        (change)="currentProd.description = $event.target.value"></textarea>
+      <textarea class="form-control" rows="5" [value]="currentProduct?.description"
+        (change)="currentProduct.description = $event.target.value"></textarea>
     </div>
   </div>
 </app-layout>

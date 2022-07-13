@@ -1,39 +1,8 @@
-<button class="trigger-btn" (click)="openModal(content)">
-  <ng-content></ng-content>
-</button>
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title"></h4>
-    <img
-      src="../../../assets/svgs/close.svg"
-      class="btn-close"
-      aria-label="Close"
-      (click)="modal.dismiss()"
-    />
-  </div>
-  <div class="modal-body">
-    <div class="imgs-ct">
-      <img
-        *ngFor="let imgItem of imgs; index as i"
-        class="prop-img-item"
-        [src]="imgItem"
-        alt="user-img"
-        (click)="selectImg(imgItem); modal.dismiss()"
-      />
-    </div>
-
-    <form>
-      <input
-        type="file"
-        name="prod-img"
-        id="prod-img"
-        multiple
-        accept="image/*"
-        (change)="onFileChange($event)"
-      />
-      <button class="btn btn-primary" (click)="addVariantPropImg()">
-        Upload Images
-      </button>
-    </form>
-  </div>
-</ng-template>
+<nz-modal [(nzVisible)]="isVisibleMiddle" nzTitle="Vertically centered modal dialog" nzCentered
+  (nzOnCancel)="handleCancelMiddle()" (nzOnOk)="handleOkMiddle()">
+  <ng-container *nzModalContent>
+    <p>some contents...</p>
+    <p>some contents...</p>
+    <p>some contents...</p>
+  </ng-container>
+</nz-modal>

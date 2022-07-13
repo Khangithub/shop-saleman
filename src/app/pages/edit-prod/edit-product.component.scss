@@ -1,18 +1,18 @@
 @import "../../../styles/colors";
 
-.prod-modal-ct {
+.product-modal-ct {
   display: flex;
   flex-direction: row;
-  padding: 20px;
   width: 100%;
   flex: 1;
 
-  .prod-modal-layout {
-    padding: 20px;
+  .product-modal-layout {
     display: flex;
     flex-direction: column;
     flex: 1;
-
+    
+    padding: 10px;
+    
     label {
       font-weight: bold;
       margin-top: 10px;

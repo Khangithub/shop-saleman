@@ -6,13 +6,31 @@ import { ProductService } from "src/app/services/product.service";
 @Component({
   selector: "app-media-modal",
   templateUrl: "./media-modal.component.html",
-  styleUrls: ["./media-modal.component.scss"],
 })
 export class MediaModalComponent implements OnInit {
   imgs: string[] = [];
   selectedFiles = [];
 
   openMediaModal: boolean = false;
+  isVisibleMiddle = false;
+  isVisibleTop = true;
+
+  showModalTop(): void {
+    this.isVisibleTop = true;
+  }
+
+  showModalMiddle(): void {
+    this.isVisibleMiddle = true;
+  }
+
+  handleOkTop(): void {
+    this.isVisibleTop = false;
+  }
+
+  handleCancelTop(): void {
+    this.isVisibleTop = false;
+  }
+
   @Output() selectedImgUrl = new EventEmitter<string>();
 
   constructor(

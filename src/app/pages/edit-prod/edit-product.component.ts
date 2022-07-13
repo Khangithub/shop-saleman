@@ -11,8 +11,9 @@ import { selectProductStore } from "src/app/store/selectors/product.select";
   templateUrl: "./edit-product.component.html",
   styleUrls: ["./edit-product.component.scss"],
 })
+
 export class EditProductComponent implements OnInit {
-  currentProd: Product;
+  currentProduct: Product;
   selectedFiles = [];
 
   variantName: string = "";
@@ -32,7 +33,7 @@ export class EditProductComponent implements OnInit {
     const productId: string = this.route.snapshot.paramMap.get("prodId");
     this.store.dispatch(getCurrentProductAction({ productId }));
     this.store.select(selectProductStore).subscribe(({ product }) => {
-      this.currentProd = product
+      this.currentProduct = product
     })
   }
 
@@ -65,18 +66,18 @@ export class EditProductComponent implements OnInit {
     let dropTag = dropArr[2];
 
     if (dragTag === "variantItem" && dropTag === "variantItem") {
-      let dragData = this.currentProd.variants[dragVariant].splice(
+      let dragData = this.currentProduct.variants[dragVariant].splice(
         dragIndex,
         1
       )[0];
-      this.currentProd.variants[dropVariant].splice(dropIndex, 0, dragData);
+      this.currentProduct.variants[dropVariant].splice(dropIndex, 0, dragData);
     }
   }
 
   removeVariant(key: string, index: number) {
-    this.currentProd.variants[key].splice(index, 1);
-    if (this.currentProd.variants[key].length === 0) {
-      delete this.currentProd.variants[key];
+    this.currentProduct.variants[key].splice(index, 1);
+    if (this.currentProduct.variants[key].length === 0) {
+      delete this.currentProduct.variants[key];
     }
     debugger;
   }
@@ -84,11 +85,11 @@ export class EditProductComponent implements OnInit {
   async onSubmit() {
     // const res: any = await this.product_service.uploadProdMedia(
     //   this.selectedFiles,
-    //   this.currentProd._id
+    //   this.currentProduct._id
     // );
     // if (res.updated) {
-    //   this.currentProd.mediaList = [
-    //     ...this.currentProd.mediaList,
+    //   this.currentProduct.mediaList = [
+    //     ...this.currentProduct.mediaList,
     //     ...res.mediaList,
     //   ];
     // }
@@ -104,15 +105,15 @@ export class EditProductComponent implements OnInit {
     };
 
     if (propImgUrl && propName && propPrice && variantName) {
-      // if (this.currentProd.variants.hasOwnProperty(variantName)) {
-      //   this.currentProd.variants[variantName].unshift(varProp);
+      // if (this.currentProduct.variants.hasOwnProperty(variantName)) {
+      //   this.currentProduct.variants[variantName].unshift(varProp);
       // } else {
       //   let variant = {};
       //   variant[variantName] = [];
       //   variant[variantName].push(varProp);
-      //   this.currentProd.variants = {
+      //   this.currentProduct.variants = {
       //     ...variant,
-      //     ...this.currentProd.variants,
+      //     ...this.currentProduct.variants,
       //   };
       // }
 
@@ -122,7 +123,7 @@ export class EditProductComponent implements OnInit {
 
   async editProd() {
     // this.savingChange = true;
-    // const res: any = await this.product_service.editProd(this.currentProd);
+    // const res: any = await this.product_service.editProd(this.currentProduct);
     // if (res.updated) {
     //   this.savingChange = false;
     // }

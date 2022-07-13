@@ -35,6 +35,7 @@ import { ProductTableComponent } from './components/product-table/product-table.
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { LayoutComponent } from './components/layout/layout.component';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { LayoutComponent } from './components/layout/layout.component';
     NzTableModule,
     NzDropDownModule,
     NzPaginationModule,
+    NzModalModule,
     EffectsModule.forRoot([UserEffect, ProductEffect]),
     StoreModule.forRoot({ user: userReducer, product: productReducer }),
     StoreDevtoolsModule.instrument({
