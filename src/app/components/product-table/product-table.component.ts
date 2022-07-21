@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Product } from 'src/app/model/product.model';
@@ -11,8 +11,8 @@ import { environment } from 'src/environments/environment';
   templateUrl: './product-table.component.html',
   styleUrls: ['./product-table.component.scss']
 })
-export class ProductTableComponent implements OnInit {
 
+export class ProductTableComponent implements OnInit {
   searchValue = '';
   visible = false;
   current = 1;
@@ -45,6 +45,6 @@ export class ProductTableComponent implements OnInit {
   }
 
   onEditProduct(productId: string) {
-    this.route.navigate([environment.EDIT_PRODUCT_ROUTE + productId])
+    this.route.navigate([environment.EDIT_PRODUCT_ROUTE], {queryParams: {productId}})
   }
 }

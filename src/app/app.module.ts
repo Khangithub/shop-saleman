@@ -6,7 +6,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { HomeComponent } from "./pages/home/home.component";
-import { EditProductComponent } from "./pages/edit-prod/edit-product.component";
+import { EditProductComponent } from "./pages/edit-product/edit-product.component";
 import { NotfoundComponent } from "./pages/notfound/notfound.component";
 import { VariantModelComponent } from "./components/variant-model/variant-model.component";
 import { ChatsComponent } from "./pages/chats/chats.component";
