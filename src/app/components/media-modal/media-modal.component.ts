@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-// import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { UserService } from "src/app/services/auth.service";
 import { ProductService } from "src/app/services/product.service";
 

@@ -3,7 +3,7 @@
     <div class="product-modal-layout">
       <label>Product Id: {{currentProduct?._id}}</label>
       <label>Name: </label>
-      <input class="form-control" type="text" [value]="currentProduct?.name"
+      <input type="text" [value]="currentProduct?.name"
         (change)="currentProduct.name = $event.target.value" />
 
       <label>Product Image: </label>
@@ -16,11 +16,11 @@
       </div>
 
       <label>Price: </label>
-      <input type="number" class="form-control" min="0" [value]="currentProduct?.price"
+      <input type="number" min="0" [value]="currentProduct?.price"
         (change)="currentProduct.price = $event.target.value" />
 
       <label>Discount (%): </label>
-      <input type="number" class="form-control" min="0" max="100" [value]="currentProduct?.discount"
+      <input type="number" min="0" max="100" [value]="currentProduct?.discount"
         (change)="currentProduct.discount = $event.target.value" />
 
       <label>Variants:
@@ -52,7 +52,7 @@
       <button nz-button (click)="editProd()" [innerText]="savingChange ? 'Saving ...' : 'Save'"
         [disabled]="savingChange" class="save-change-btn"></button>
       <label>Category: </label>
-      <select class="form-control" [value]="currentProduct?.category"
+      <select [value]="currentProduct?.category"
         (change)="currentProduct.category = $event.target.value">
         <option value="book">book</option>
         <option value="technology">technology</option>
@@ -60,11 +60,11 @@
       </select>
 
       <label>Manufacturer: </label>
-      <input class="form-control" type="text" [value]="currentProduct?.manufacturer"
+      <input type="text" [value]="currentProduct?.manufacturer"
         (change)="currentProduct.manufacturer = $event.target.value" />
 
       <label>Description: </label>
-      <textarea class="form-control" rows="5" [value]="currentProduct?.description"
+      <textarea rows="5" [value]="currentProduct?.description"
         (change)="currentProduct.description = $event.target.value"></textarea>
     </div>
   </div>
