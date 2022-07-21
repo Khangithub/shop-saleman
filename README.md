@@ -1,5 +1,4 @@
 # Integrate Socket.io with angular
-
 https://github.com/AzharHusain/realtimechatapp/blob/master/assets/app/app.component.ts
 
 # The Simple Difference Between RxJS switchMap and mergeMap
@@ -10,3 +9,6 @@ RMDIR node_modules
 
 # Angular update
 https://update.angular.io
+
+# Navigate with query
+https://stackoverflow.com/questions/46928078/pass-query-params-in-router-module-routes-array-and-read-in-component

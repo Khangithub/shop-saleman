@@ -15,6 +15,7 @@ import { selectProductStore } from "src/app/store/selectors/product.select";
 export class EditProductComponent implements OnInit {
   currentProduct: Product;
   selectedFiles = [];
+  productId: string = '';
 
   variantName: string = "";
   propName: string = "";
@@ -30,8 +31,8 @@ export class EditProductComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    const productId: string = this.route.snapshot.paramMap.get("prodId");
-    this.store.dispatch(getCurrentProductAction({ productId }));
+    this.route.queryParamMap.subscribe(params => this.productId = params.get('productId'));
+    this.store.dispatch(getCurrentProductAction({ productId: this.productId }));
     this.store.select(selectProductStore).subscribe(({ product }) => {
       this.currentProduct = product
     })

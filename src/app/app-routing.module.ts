@@ -25,8 +25,13 @@ const routes: Routes = [
     component: SettingsComponent,
   },
   {
-    path: "product/edit/:prodId",
-    component: EditProductComponent,
+    path: "product",
+    children: [
+      {
+        path: 'edit',
+        component: EditProductComponent, 
+      }
+    ]
   },
   { path: "**", component: NotfoundComponent },
 ];

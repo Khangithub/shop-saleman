@@ -45,6 +45,6 @@ export class ProductTableComponent implements OnInit {
   }
 
   onEditProduct(productId: string) {
-    this.route.navigate([environment.EDIT_PRODUCT_ROUTE + productId])
+    this.route.navigate([environment.EDIT_PRODUCT_ROUTE], {queryParams: {productId}})
   }
 }
