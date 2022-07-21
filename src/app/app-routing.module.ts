@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { SettingsComponent } from './pages/settings/settings.component';
 import { ChatsComponent } from "./pages/chats/chats.component";
-import { EditProductComponent } from "./pages/edit-prod/edit-product.component";
+import { EditProductComponent } from "./pages/edit-product/edit-product.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { NotfoundComponent } from "./pages/notfound/notfound.component";
