@@ -1,0 +1,8 @@
+<nz-modal [(nzVisible)]="showModal" nzTitle="Vertically centered modal dialog" nzCentered
+    (nzOnCancel)="handleCancelMiddle()" (nzOnOk)="handleOkMiddle()">
+    <ng-container *nzModalContent>
+        <p>some contents...</p>
+        <p>some contents...</p>
+        <p>some contents...</p>
+    </ng-container>
+</nz-modal>

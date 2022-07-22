@@ -1,21 +1,19 @@
 <app-layout style="overflow: scroll;">
-  <div class="product-modal-ct">
+  <form class="product-modal-ct" (submit)="onEditProduct()">
     <div class="product-modal-layout">
       <label>Product Id: {{currentProduct?._id}}</label>
       <label>Name: </label>
-      <input type="text" [value]="currentProduct?.name"
-        (change)="currentProduct.name = $event.target.value" />
+      <input type="text" [value]="currentProduct?.name" (change)="currentProduct.name = $event.target.value" nz-input nzSize="large" />
 
       <label>Product Image: </label>
-      <div class="prod-img-ct" [ngStyle]="{
+      <div class="product-img-ct" [ngStyle]="{
             'background-image': 'url(' + currentProduct?.productImage + ')'
-          }">
-        <app-media-modal (selectedImgUrl)="currentProduct.productImage = $event">
+          }" (click)="showProductImgModal = true">
           <img src="../../../assets/svgs/edit.svg" alt="edit-prod" class="middle" />
-        </app-media-modal>
       </div>
 
-      <label>Price: </label>
+      <app-product-img-modal [visible]="showProductImgModal" (modalClose)="showProductImgModal = $event"></app-product-img-modal>
+      <!-- <label>Price: </label>
       <input type="number" min="0" [value]="currentProduct?.price"
         (change)="currentProduct.price = $event.target.value" />
 
@@ -65,7 +63,7 @@
 
       <label>Description: </label>
       <textarea rows="5" [value]="currentProduct?.description"
-        (change)="currentProduct.description = $event.target.value"></textarea>
+        (change)="currentProduct.description = $event.target.value"></textarea> -->
     </div>
-  </div>
+  </form>
 </app-layout>

@@ -11,7 +11,6 @@ import { NotfoundComponent } from "./pages/notfound/notfound.component";
 import { VariantModelComponent } from "./components/variant-model/variant-model.component";
 import { ChatsComponent } from "./pages/chats/chats.component";
 import { SettingsComponent } from "./pages/settings/settings.component";
-import { MediaModalComponent } from "./components/media-modal/media-modal.component";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
 import { UserEffect } from "src/app/store/effects/auth.effects";
@@ -36,6 +35,7 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { LayoutComponent } from './components/layout/layout.component';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { ProductImgModalComponent } from './components/product-img-modal/product-img-modal.component';
 
 @NgModule({
   declarations: [
@@ -47,9 +47,9 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
     VariantModelComponent,
     ChatsComponent,
     SettingsComponent,
-    MediaModalComponent,
     ProductTableComponent,
     LayoutComponent,
+    ProductImgModalComponent,
   ],
   imports: [
     BrowserModule,
