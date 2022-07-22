@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class ProductImgModalComponent implements OnInit {
   @Input('visible') showModal: boolean = false;
   @Output() modalClose = new EventEmitter<boolean>();
-ß
+
   constructor() { }
 
   ngOnInit(): void {
