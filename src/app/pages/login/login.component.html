@@ -1,15 +1,14 @@
 <div class="login">
-  <div class="login-ct">
+  <form class="login-ct" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <h2 nz-typography>Login</h2>
 
     <div class="login-form">
-      <input type="text" nz-input name="email" placeholder="Email" nzSize="large" autoComplete="email" [value]="email"
-        (change)="email = $event.target.value" />
-
+      <input type="text" nz-input name="email" placeholder="Email" nzSize="large" autoComplete="email" formControlName="email" />
       <nz-input-group [nzSuffix]="suffixTemplate">
-        <input [type]="passwordVisible ? 'text' : 'password'" nz-input placeholder="Password" [value]="password"
-          (change)="password = $event.target.value" />
+        <input [type]="passwordVisible ? 'text' : 'password'" nz-input placeholder="Password"
+          formControlName="password" />
       </nz-input-group>
+
       <ng-template #suffixTemplate>
         <img [src]="passwordVisible ? '../../../assets/svgs/eye.svg' : '../../../assets/svgs/eye-crossed.svg' "
           style="height: 17px; width: 17px;" alt="show password icon" (click)="passwordVisible = !passwordVisible">
@@ -38,5 +37,5 @@
       <p>Not on Shopeeholic yet? Sign up</p>
     </div>
 
-  </div>
+  </form>
 </div>
