@@ -13,11 +13,11 @@
       </div>
 
       <app-product-img-modal [visible]="showProductImgModal" (modalClose)="showProductImgModal = $event"></app-product-img-modal>
-      <!-- <label>Price: </label>
+      <label>Price: </label>
       <input type="number" min="0" [value]="currentProduct?.price"
-        (change)="currentProduct.price = $event.target.value" />
+        (change)="currentProduct.price = $event.target.value" nz-input nzSize="large" />
 
-      <label>Discount (%): </label>
+   <!--    <label>Discount (%): </label>
       <input type="number" min="0" max="100" [value]="currentProduct?.discount"
         (change)="currentProduct.discount = $event.target.value" />
 

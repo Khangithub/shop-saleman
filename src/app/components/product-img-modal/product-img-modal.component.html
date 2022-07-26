@@ -1,5 +1,5 @@
 <nz-modal [(nzVisible)]="showModal" nzTitle="Select product image" nzCentered
-    (nzOnCancel)="handleCancelMiddle()" (nzOnOk)="handleOkMiddle()">
+    (nzOnCancel)="modalClose.emit(false)" (nzOnOk)="handleOkMiddle()">
     <ng-container *nzModalContent>
         <p>some contents...</p>
         <p>some contents...</p>

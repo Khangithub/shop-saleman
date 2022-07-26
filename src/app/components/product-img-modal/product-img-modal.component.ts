@@ -15,11 +15,6 @@ export class ProductImgModalComponent implements OnInit {
   }
 
   handleOkMiddle(): void {
-    console.log('click ok');
-    this.modalClose.emit(false);
-  }
-
-  handleCancelMiddle(): void {
     this.modalClose.emit(false);
   }
 }
